@@ -4,7 +4,7 @@ Sitio web del Grupo 29 para el Trabajo Práctico 1 de la Tecnicatura. El proyect
 
 ## Integrantes
 
-- [Leonel Diaz](A completar) - Santa Fe
+- [Leonel Diaz](https://github.com/LeonelDiaz225) - Santa Fe
 - [Integrante 2]()
 - [Integrante 3]()
 - [Integrante 4]()
@@ -41,7 +41,7 @@ TP1/
     └── bitacora.html       # Registro del proceso
 ```
 
-La carpeta `img/` incluye la ruta reservada `avatar-leonel.jpg`; se debe agregar allí la imagen real para que aparezca en el perfil.
+La carpeta `img/` contiene los avatares de todos los integrantes.
 
 ## Guía de estilos
 
@@ -78,14 +78,10 @@ URL de publicación en Vercel: **A completar**
 
 1. Abrir `index.html` en un navegador, o iniciar una extensión de servidor local desde VS Code.
 2. Navegar a los perfiles desde la portada.
-3. Reemplazar los datos `A completar` y agregar las imágenes de los integrantes.
-4. Completar los enlaces de GitHub y la URL de Vercel.
+3. Revisar la seccion de la bitacora para analizar las decisiones y responsables del equipo.
 
 ## Cambios que podríamos agregar más adelante
 
-- Completar la información personal y los enlaces de GitHub de todo el equipo.
-- Incorporar las imágenes reales de los integrantes y optimizarlas para la web.
-- Completar la bitácora con fechas, decisiones y dificultades reales.
 - Agregar capturas de pantalla del sitio y de sus interacciones.
 - Añadir validaciones de accesibilidad, navegación completa con teclado y mejores textos alternativos.
 - Incorporar una sección de contacto o enlaces a redes profesionales.
