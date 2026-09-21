@@ -81,12 +81,13 @@ URL de publicación en Vercel: **A completar**
 3. Reemplazar los datos `A completar` y agregar las imágenes de los integrantes.
 4. Completar los enlaces de GitHub y la URL de Vercel.
 
-## Evolución y próximos pasos
+## Cambios que podríamos agregar más adelante
 
-- Completar la información y los enlaces de GitHub de todo el equipo.
+- Completar la información personal y los enlaces de GitHub de todo el equipo.
 - Incorporar las imágenes reales de los integrantes y optimizarlas para la web.
 - Completar la bitácora con fechas, decisiones y dificultades reales.
-- Agregar capturas de pantalla a esta documentación.
-- Revisar accesibilidad con teclado y herramientas de contraste.
-- Publicar la versión final en Vercel y registrar la URL.
-- Mejorar progresivamente la experiencia responsive en nuevos trabajos prácticos.
+- Agregar capturas de pantalla del sitio y de sus interacciones.
+- Añadir validaciones de accesibilidad, navegación completa con teclado y mejores textos alternativos.
+- Incorporar una sección de contacto o enlaces a redes profesionales.
+- Mejorar las animaciones, la navegación y la experiencia responsive en futuras entregas.
+- Publicar nuevas versiones en Vercel y actualizar la URL registrada.

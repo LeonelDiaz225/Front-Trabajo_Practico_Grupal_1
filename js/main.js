@@ -1,26 +1,32 @@
 // Inicializa el tema guardado y permite alternarlo desde cualquier página.
+const themeButtons = document.querySelectorAll("[data-theme-toggle]");
 const savedTheme = localStorage.getItem("grupo29-theme");
-if (savedTheme === "dark")
-  document.documentElement.setAttribute("data-theme", "dark");
 
-document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-  const updateLabel = () => {
-    const darkMode =
-      document.documentElement.getAttribute("data-theme") === "dark";
+function applyTheme(theme) {
+  const darkMode = theme === "dark";
+
+  if (darkMode) document.documentElement.setAttribute("data-theme", "dark");
+  else document.documentElement.removeAttribute("data-theme");
+
+  themeButtons.forEach((button) => {
     button.textContent = darkMode ? "Modo claro" : "Modo oscuro";
     button.setAttribute(
       "aria-label",
       darkMode ? "Activar modo claro" : "Activar modo oscuro",
     );
-  };
-  updateLabel();
+  });
+}
+
+applyTheme(savedTheme === "dark" ? "dark" : "light");
+
+themeButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const darkMode =
       document.documentElement.getAttribute("data-theme") === "dark";
-    document.documentElement.toggleAttribute("data-theme", !darkMode);
-    if (!darkMode) localStorage.setItem("grupo29-theme", "dark");
-    else localStorage.removeItem("grupo29-theme");
-    updateLabel();
+    const nextTheme = darkMode ? "light" : "dark";
+
+    applyTheme(nextTheme);
+    localStorage.setItem("grupo29-theme", nextTheme);
   });
 });
 
