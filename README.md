@@ -10,7 +10,6 @@ Sitio web del Grupo 29 para el Trabajo Práctico 1 de la Tecnicatura. El proyect
 - [Integrante 4]()
 - [Integrante 5]()
 
-Los enlaces de GitHub de los integrantes pendientes quedan reservados para completarse cuando el equipo defina sus usuarios.
 
 ## Tecnologías utilizadas
 
