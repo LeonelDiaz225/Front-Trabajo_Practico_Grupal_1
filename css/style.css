@@ -8,6 +8,10 @@
     
     --fuente-titulos: 'Space Grotesk', sans-serif;
     --fuente-texto: 'Inter', sans-serif;
+    --fuente-nav: 'Orbitron', sans-serif;
+    --fuente-nombres: 'Syne', sans-serif;
+    --fuente-roles: 'Plus Jakarta Sans', sans-serif;
+    --fuente-especial: 'Zen Dots', sans-serif;
 }
 
 * {
@@ -59,7 +63,6 @@ body {
 .logo-contenedor {
     display: flex;
     align-items: center;
-    gap: 12px;
     text-decoration: none;
     transition: transform 0.3s ease;
 }
@@ -68,13 +71,8 @@ body {
     transform: scale(1.05);
 }
 
-.icono-nav {
-    width: 90px;
-    height: auto;
-}
-
-.texto-nav {
-    height: 24px;
+.logo-nav-unico {
+    height: 35px;
     width: auto;
 }
 
@@ -86,11 +84,27 @@ body {
 .nav-link {
     color: var(--texto-claro);
     text-decoration: none;
-    font-family: var(--fuente-titulos);
+    font-family: 'Orbitron', sans-serif;
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
     border-radius: 8px;
     transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.icono-github-nav {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.icon-link:hover {
+    background-color: transparent; 
+}
+
+.icon-link:hover .icono-github-nav {
+    transform: scale(1.2);
 }
 
 .nav-link:hover, .nav-link.activo {
@@ -148,7 +162,7 @@ body {
 }
 
 .seccion-descripcion h1 {
-    font-family: var(--fuente-titulos);
+    font-family: var(--fuente-roles);;
     color: var(--verde-yoda);
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -165,8 +179,19 @@ body {
     padding: 4rem 2rem;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
+.titulo-staff {
+    font-family: var(--fuente-especial);
+    font-size: 2.8rem;
+    color: var(--verde-yoda);
+    margin-bottom: 3rem;
+    letter-spacing: 4px;
+    text-align: center;
+    text-shadow: 0 4px 15px rgba(88, 201, 139, 0.3); 
+}
 .grilla-integrantes {
     display: grid;
     gap: 2rem;
@@ -189,6 +214,22 @@ body {
     align-items: center;
 }
 
+.tarjeta-resumen h2 {
+    font-family: var(--fuente-nombres);
+    font-weight: 700;
+    color: var(--texto-claro);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+    
+}
+
+.tarjeta-resumen p {
+    font-family: var(--fuente-roles);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: #a0aec0;
+}
+
 .avatar-index {
     width: 100px;
     height: 100px;
@@ -199,56 +240,57 @@ body {
     transition: all 0.3s ease;
 }
 
-.tarjeta-resumen h2 {
-    font-family: var(--fuente-titulos);
-    color: var(--texto-claro);
-    margin-bottom: 0.5rem;
-    transition: color 0.3s;
-}
-
-.tarjeta-resumen p {
-    margin-bottom: 1.5rem;
-    color: #a0aec0;
-}
-
 .btn-perfil {
     display: inline-block;
-    background-color: var(--verde-yoda);
-    color: var(--bg-espacio);
+    background-color: transparent; /* Sin relleno */
+    color: var(--verde-yoda); /* Letra verde */
+    border: 2px solid var(--verde-yoda); /* Borde verde */
     padding: 0.8rem 1.5rem;
     text-decoration: none;
     font-family: var(--fuente-titulos);
     font-weight: bold;
     border-radius: 6px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease; /* Transición para fondo, color y borde */
     margin-top: auto;
 }
 
+/* Efecto hover por defecto (por si se usa un botón fuera de las tarjetas) */
 .btn-perfil:hover {
-    background-color: var(--verde-fuerza);
-    color: var(--texto-claro);
+    background-color: var(--verde-yoda);
+    color: var(--bg-espacio);
 }
 
-/* Iluminación personalizada por integrante */
+/* --- Iluminación personalizada por integrante --- */
+
+/* Leonel: Azul */
 #card-leonel:hover { border-color: #007bff; box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4); transform: translateY(-5px); }
 #card-leonel:hover .avatar-index { border-color: #007bff; }
 #card-leonel:hover h2 { color: #007bff; }
+#card-leonel:hover .btn-perfil { background-color: #007bff; color: #ffffff; }
 
+/* Maximiliano: Naranja */
 #card-maxi:hover { border-color: #ff9900; box-shadow: 0 10px 25px rgba(255, 153, 0, 0.4); transform: translateY(-5px); }
 #card-maxi:hover .avatar-index { border-color: #ff9900; }
 #card-maxi:hover h2 { color: #ff9900; }
+#card-maxi:hover .btn-perfil { background-color: #ff9900; color: #ffffff; }
 
-#card-yohana:hover { border-color: #ff66b2; box-shadow: 0 10px 25px #ff66b2 (0, 229, 255, 0.4); transform: translateY(-5px); }
+/* Yohana: Rosa */
+#card-yohana:hover { border-color: #ff66b2; box-shadow: 0 10px 25px rgba(255, 102, 178, 0.4); transform: translateY(-5px); }
 #card-yohana:hover .avatar-index { border-color: #ff66b2; }
 #card-yohana:hover h2 { color: #ff66b2; }
+#card-yohana:hover .btn-perfil { background-color: #ff66b2; color: #ffffff; }
 
-#card-sabrina:hover { border-color: #e63c3c; box-shadow: 0 10px 25px #e63c3c(255, 102, 178, 0.4); transform: translateY(-5px); }
-#card-sabrina:hover .avatar-index { border-color: #e63c3c; }
-#card-sabrina:hover h2 { color: #e63c3c; }
+/* Melisa: Rojo */
+#card-melisa:hover { border-color: #e63c3c; box-shadow: 0 10px 25px rgba(230, 60, 60, 0.4); transform: translateY(-5px); }
+#card-melisa:hover .avatar-index { border-color: #e63c3c; }
+#card-melisa:hover h2 { color: #e63c3c; }
+#card-melisa:hover .btn-perfil { background-color: #e63c3c; color: #ffffff; }
 
+/* Itziar: Violeta */
 #card-itz:hover { border-color: #b266ff; box-shadow: 0 10px 25px rgba(178, 102, 255, 0.4); transform: translateY(-5px); }
 #card-itz:hover .avatar-index { border-color: #b266ff; }
 #card-itz:hover h2 { color: #b266ff; }
+#card-itz:hover .btn-perfil { background-color: #b266ff; color: #ffffff; }
 
 /* FOOTER */
 .footer-sitio {
@@ -261,6 +303,7 @@ body {
     width: 100%;
     position: relative;
     z-index: 10;
+    font-family: 'Orbitron', sans-serif;
 }
 
 /*  DISEÑO ADAPTATIVO */
