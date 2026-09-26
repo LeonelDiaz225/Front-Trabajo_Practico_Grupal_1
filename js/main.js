@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollActual = window.scrollY || window.pageYOffset || 0;
             
             // Aparece apenas el usuario scrollea más de 40px desde el tope
-            if (scrollActual > 40) {
+            if (scrollActual > window.innerHeight - 40) {
                 headerOculto.classList.add('visible');
             } else {
                 headerOculto.classList.remove('visible');

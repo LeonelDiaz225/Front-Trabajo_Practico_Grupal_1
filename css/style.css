@@ -39,8 +39,8 @@ body::-webkit-scrollbar {
 body {
     background-color: var(--bg-espacio);
     background-image: 
-        radial-gradient(circle at 50% 40%, rgba(13, 34, 51, 0.5) 0%, rgba(7, 12, 18, 0.8) 60%, rgba(7, 12, 18, 0.97) 100%),
-        url('../img/fondo.jpg');
+        radial-gradient(circle at 50% 40%, rgba(13, 34, 51, 0.5) 0%, rgba(7, 12, 18, 0.8) 60%, rgba(7, 12, 18, 0.97) 85%),
+        url('../img/fondo3.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -66,25 +66,28 @@ body {
     opacity: 0.95;
 }
 
-/*ENCABEZADO FIJO*/
+/* ENCABEZADO FIJO Y COMPORTAMIENTO HERO */
 .header-fijo {
-    position: fixed;
-    top: -100px;
+    position: absolute; /* Inicia absoluto sobre el Hero */
+    top: 0;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.85rem 3rem;
-    background-color: rgba(9, 13, 20, 0.92);
-    backdrop-filter: blur(10px);
+    padding: 1.5rem 3rem; /* Un poco más amplio al inicio */
+    background-color: transparent; /* Sin fondo en el Hero */
     z-index: 1000;
-    border-bottom: 1px solid var(--verde-fuerza);
-    transition: top 0.4s ease-in-out;
+    border-bottom: 1px solid transparent;
+    transition: all 0.4s ease-in-out;
 }
 
 .header-fijo.visible {
-    top: 0;
+    position: fixed; /* Se vuelve fijo al hacer scroll */
+    padding: 0.85rem 3rem;
+    background-color: rgba(9, 13, 20, 0.90);
+    backdrop-filter: blur(7px);
+    border-bottom: 1px solid var(--verde-fuerza);
 }
 
 .logo-contenedor {
@@ -296,26 +299,13 @@ body {
         drop-shadow(0 0 120px rgba(57, 255, 122, 0.35));
 }
 
-/* Línea divisora animada */
-.hero-divisor {
-    width: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--verde-yoda), transparent);
-    animation: expandirLinea 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s forwards;
-    opacity: 0.6;
-}
-
-@keyframes expandirLinea {
-    to { width: clamp(200px, 55vw, 600px); }
-}
-
 .hero-tagline {
     font-family: var(--fuente-nav);
     font-size: clamp(0.55rem, 1.4vw, 0.78rem);
     letter-spacing: clamp(2px, 0.5vw, 6px);
     color: #64748b;
     text-transform: uppercase;
-    margin-top: 0;
+    margin-top: 10px;
 }
 
 @keyframes flotar {
@@ -340,11 +330,10 @@ body {
     gap: 3rem;
     max-width: 1050px;
     width: 100%;
-    background: linear-gradient(135deg, rgba(20, 35, 48, 0.75) 0%, rgba(9, 17, 26, 0.9) 100%);
     border: 1px solid var(--verde-fuerza);
     border-radius: 16px;
     padding: 2.5rem 3rem;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(7px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(57, 255, 122, 0.15);
     position: relative;
     overflow: hidden;
@@ -372,7 +361,7 @@ body {
 }
 
 .sobre-nosotros-img {
-    width: 150px;
+    width: 200px;
     height: auto;
     object-fit: contain;
     position: relative;
@@ -381,23 +370,9 @@ body {
     animation: flotarSuave 5s ease-in-out infinite;
 }
 
-.sobre-nosotros-glow {
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    background: radial-gradient(circle, rgba(57, 255, 122, 0.25) 0%, rgba(33, 67, 88, 0) 70%);
-    border-radius: 50%;
-    animation: pulsarGlow 4s ease-in-out infinite alternate;
-}
-
 @keyframes flotarSuave {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-8px) rotate(1.5deg); }
-}
-
-@keyframes pulsarGlow {
-    0% { transform: scale(0.9); opacity: 0.6; }
-    100% { transform: scale(1.15); opacity: 1; }
 }
 
 .sobre-nosotros-contenido {
@@ -1115,12 +1090,6 @@ body {
 }
 }
 
-
-
-
-
-
-
 /* =====================================================
    MINI CARDS (CONTROLES DE CARRUSEL)
    ===================================================== */
@@ -1155,4 +1124,120 @@ body {
     color: #fff;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(57, 255, 122, 0.3), inset 0 0 15px rgba(57, 255, 122, 0.2);
+}
+
+
+/* =====================================================
+   SISTEMA DE RESPONSIVIDAD (400px, 900px, 1200px)
+   ===================================================== */
+
+/* 1. DISPOSITIVOS MÓVILES PEQUEÑOS (Hasta 400px) */
+@media (max-width: 400px) {
+    .header-fijo, .header-perfil {
+        padding: 0.6rem 0.8rem;
+    }
+    .titulo-sobre-nosotros {
+        font-size: 1.8rem;
+    }
+    .navegacion-principal {
+        gap: 0.35rem;
+    }
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.45rem;
+    }
+    .contenedor-sobre-nosotros {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* 2. TABLETS Y MÓVILES GRANDES (Hasta 900px) */
+@media (max-width: 900px) {
+    /* Configuración del menú hamburguesa compartida */
+    .menu-toggle { 
+        display: flex; 
+    }
+    .header-fijo { 
+        padding: 0.75rem 1.25rem; 
+    }
+    .navegacion-principal { 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100%; 
+        background-color: rgba(9, 13, 20, 0.98); 
+        flex-direction: column; 
+        gap: 0; 
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); 
+        transition: clip-path 0.4s ease; 
+        border-bottom: 1px solid var(--verde-fuerza); 
+    }
+    .navegacion-principal.nav-abierto { 
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); 
+    }
+    .nav-link { 
+        font-size: 1rem; 
+        padding: 1.2rem; 
+        width: 100%; 
+        text-align: center; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        border-radius: 0; 
+    }
+    .nav-link:last-child { 
+        border-bottom: none; 
+    }
+
+    /* Ajustes de layout para pantallas medianas */
+    .contenedor-sobre-nosotros {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .sobre-nosotros-imagen-wrapper {
+        width: 140px;
+        height: 140px;
+    }
+    .seccion-completa {
+        height: auto;
+        padding: 6rem 1rem 3rem 1rem; /* Más padding superior para que el nav no tape el contenido */
+    }
+}
+
+/* 3. ESCRITORIO (Desde 900px a 1199px) */
+@media (min-width: 900px) {
+    .menu-toggle {
+        display: none; /* Asegura que el botón hamburguesa desaparezca */
+    }
+    .navegacion-principal {
+        flex-direction: row;
+        position: relative;
+        background-color: transparent;
+        border-bottom: none;
+        clip-path: none;
+    }
+}
+
+/* 4. PANTALLAS GRANDES (1200px o más) */
+@media (min-width: 1200px) {
+    .header-fijo { 
+        padding: 1rem 5rem; 
+    }
+    .tarjeta-resumen { 
+        width: 660px; 
+    }
+    .card-cuerpo { 
+        flex-direction: row; 
+        text-align: left; 
+        padding: 2.5rem 2rem; 
+        gap: 2.5rem; 
+    }
+    .card-info { 
+        align-items: flex-start; 
+        text-align: left; 
+    }
+    .contenedor-index, .contenedor-bitacora, .contenedor-principal {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 }

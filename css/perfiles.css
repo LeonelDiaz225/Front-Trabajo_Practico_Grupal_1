@@ -137,7 +137,7 @@
 }
 
 /* Aura exterior: núcleo de sable y difusión de energía sobre el fondo espacial. */
-.tarjeta-flip::before {
+.tarjeta-inner::before {
     content: '';
     position: absolute;
     inset: -5px;
@@ -284,7 +284,7 @@
 @media (prefers-reduced-motion: reduce) {
     .tarjeta-frente,
     .tarjeta-dorso,
-    .tarjeta-flip::before,
+    .tarjeta-inner::before,
     .tarjeta-frente::after,
     .tarjeta-dorso::after {
         animation: none;
@@ -509,15 +509,31 @@ h3 {
         font-size: 0.85rem;
         padding: 0.35rem 0.6rem;
     }
-    .tarjeta-flip { height: auto; min-height: 750px; }
-    .tarjeta-frente, .tarjeta-dorso { flex-direction: column; position: relative; height: auto; backface-visibility: visible; display: none; }
-    .tarjeta-flip .tarjeta-frente { display: flex; }
-    .columna-izq, .columna-der { width: 100%; border-right: none; }
+    
+    /* 1. Altura fija mayor necesaria para que el 3D funcione con el contenido apilado en vertical */
+    .tarjeta-flip { 
+        height: 950px; /* Puedes subir o bajar este número si ves que te sobra o falta espacio abajo */
+        min-height: unset;
+    }
+    
+    /* 2. Apilamos las columnas, pero ELIMINAMOS los bloqueos que rompían el giro 3D */
+    .tarjeta-frente, 
+    .tarjeta-dorso { 
+        flex-direction: column; 
+    }
+    
+    /* 3. Las columnas usan el ancho completo */
+    .columna-izq, 
+    .columna-der { 
+        width: 100%; 
+        border-right: none; 
+    }
 
     .navegacion-tripulacion {
         width: min(680px, calc(100% - 2rem));
     }
 }
+
 
 @media (max-width: 400px) {
     .header-perfil {
