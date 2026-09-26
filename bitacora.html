@@ -94,62 +94,62 @@
                         </td>
                         <td>Disparidad de configuraciones locales y duplicación de carpetas iniciales.</td>
                         <td>Se acordó la arquitectura oficial: archivos HTML en la raíz, carpetas <code>css/</code>, <code>js/</code> e <code>img/</code>.</td>
-                        <td class="celda-responsables">Leonel & Equipo</td>
+                        <td class="celda-responsables">Leonel & Maximiliano</td>
                     </tr>
                     <tr>
                         <td class="celda-fecha">2026-09-22</td>
                         <td class="celda-avance">
                             <span class="badge-fase diseno">Identidad</span>
                             <strong>Rediseño galáctico "Yoda Labs"</strong>
-                            <p>Evolución estética completa: canvas espacial interactivo en JavaScript, paleta espacial (#090D14, #58C98B, #214358) y tipografías temáticas.</p>
+                            <p>Evolución estética completa: canvas espacial interactivo en JavaScript, paleta espacial y tipografías temáticas.</p>
                         </td>
-                        <td>Asegurar que el canvas de partículas no bloquee los eventos ni consuma excesiva CPU en dispositivos móviles.</td>
+                        <td>Asegurar que el canvas de partículas no bloquee los eventos en dispositivos móviles.</td>
                         <td>Uso de <code>requestAnimationFrame</code> con recálculo dinámico de dimensiones y <code>z-index: -1</code> fijo.</td>
-                        <td class="celda-responsables">Plecto & Leonel</td>
+                        <td class="celda-responsables">Itziar & Yohana</td>
                     </tr>
                     <tr>
                         <td class="celda-fecha">2026-09-23</td>
                         <td class="celda-avance">
                             <span class="badge-fase codigo">Arquitectura</span>
                             <strong>Limpieza de rutas y perfiles individuales</strong>
-                            <p>Eliminación de plantillas duplicadas en subcarpetas. Estandarización de <code>leonel.html</code>, <code>maximiliano.html</code>, <code>yohana.html</code>, <code>melisa.html</code> e <code>itziar.html</code> en la raíz.</p>
+                            <p>Eliminación de plantillas duplicadas en subcarpetas. Estandarización de perfiles en la raíz.</p>
                         </td>
                         <td>Rutas relativas rotas en enlaces y recursos CSS/JS al mover archivos de <code>pages/</code> a la raíz.</td>
                         <td>Refactorización integral de rutas relativas directas y saneamiento del historial de Git.</td>
-                        <td class="celda-responsables">Plecto & Itziar</td>
+                        <td class="celda-responsables">Leonel & Melisa</td>
                     </tr>
                     <tr>
                         <td class="celda-fecha">2026-09-23</td>
                         <td class="celda-avance">
                             <span class="badge-fase multimedia">Contenido</span>
                             <strong>Tarjetas Flip 3D y multimedia de integrantes</strong>
-                            <p>Implementación de tarjeta interactiva con efecto 3D flip al clic, galerías de películas con trailers de YouTube y discos favoritos con enlaces a música.</p>
+                            <p>Implementación de tarjeta interactiva con efecto 3D flip al clic, galerías de películas y discos.</p>
                         </td>
                         <td>En pantallas chicas, la rotación 3D desbordaba o truncaba el texto de las dos caras de la tarjeta.</td>
-                        <td>Ajuste responsive mediante media query en 900px y 400px adaptando el flujo a vista vertical accesible.</td>
-                        <td class="celda-responsables">Itziar & Equipo</td>
+                        <td>Ajuste responsive mediante media query adaptando el flujo a vista vertical accesible.</td>
+                        <td class="celda-responsables">Maximiliano & Itziar</td>
                     </tr>
                     <tr>
                         <td class="celda-fecha">2026-09-25</td>
                         <td class="celda-avance">
                             <span class="badge-fase entrega">Consolidación</span>
-                            <strong>Integración de bitácora y validación integral</strong>
-                            <p>Implementación final de la bitácora con diseño unificado, verificación de navegación bidireccional en todas las páginas y preparación para entrega.</p>
+                            <strong>Integración de bitácora y QA</strong>
+                            <p>Implementación final de la bitácora con diseño unificado y revisión minuciosa del contenido.</p>
                         </td>
                         <td>La bitácora original mantenía estilos genéricos antiguos que rompían la identidad visual del proyecto.</td>
-                        <td>Reescritura completa con <code>css/bitacora.css</code>, canvas espacial, navegación bidireccional y adaptación responsive estricta.</td>
-                        <td class="celda-responsables">Grupo Yoda Labs</td>
+                        <td>Reescritura completa con <code>css/bitacora.css</code>, adaptación responsive y control de calidad de Melisa y Yohana.</td>
+                        <td class="celda-responsables">Melisa & Yohana</td>
                     </tr>
                     <tr>
-                        <td class="celda-fecha">2026-09-25</td>
+                        <td class="celda-fecha">2026-09-26</td>
                         <td class="celda-avance">
                             <span class="badge-fase codigo">Refactorización</span>
-                            <strong>Audio, Carrusel JS Puro y Menú Móvil</strong>
-                            <p>Integración de audio loopeado (`theme.mp3`), reemplazo del carrusel estático por uno interactivo JS sin clonación de DOM, y unificación responsive de las cards a tamaño doble en desktop.</p>
+                            <strong>Audio, Carrusel JS y Mini Cards</strong>
+                            <p>Integración de controles interactivos (mini-cards) en el carrusel de staff y silenciamiento de audio en perfiles.</p>
                         </td>
-                        <td>Políticas de autoplay en navegadores bloqueaban el audio; las cards se achataban en móvil; y el menú hamburguesa requería lógica stateful.</td>
-                        <td>Solución JS nativa (`requestAnimationFrame`) para rotar el carrusel; media queries en 400px, 900px y 1200px para redimensionar las cards; y botón de audio interactivo.</td>
-                        <td class="celda-responsables">Leonel & Equipo</td>
+                        <td>El carrusel se desincronizaba al buscar tarjetas específicas y el autoplay generaba advertencias de sonido.</td>
+                        <td>Algoritmo de búsqueda bidireccional implementado en JS; mute forzado en páginas personales.</td>
+                        <td class="celda-responsables">Leonel, Maximiliano, Yohana, Melisa, Itziar</td>
                     </tr>
                 </tbody>
             </table>
