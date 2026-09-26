@@ -144,20 +144,50 @@ document.addEventListener('DOMContentLoaded', () => {
         let isPaused = true;
         let animationFrameId;
         const speed = 1.2; // Velocidad en píxeles por frame
+        let seekTargetId = null;
 
-        function animarCarrusel() {
-            if (!isPaused) {
-                currentX -= speed;
+                function animarCarrusel() {
+            let shouldMove = !isPaused;
+            let currentSpeed = speed;
+            let moveDirection = -1; // -1 for left, 1 for right
+
+            if (seekTargetId) {
+                const targetCard = document.getElementById(seekTargetId);
+                if (targetCard) {
+                    const cardRect = targetCard.getBoundingClientRect();
+                    const viewportRect = track.parentElement.getBoundingClientRect();
+                    const cardCenter = cardRect.left + cardRect.width / 2;
+                    const viewportCenter = viewportRect.left + viewportRect.width / 2;
+                    const diff = cardCenter - viewportCenter;
+                    
+                    if (Math.abs(diff) <= 15) {
+                        currentX -= diff; // snap to exact center
+                        shouldMove = true; 
+                        moveDirection = 0; 
+                    } else {
+                        currentSpeed = 15;
+                        shouldMove = true;
+                        moveDirection = diff > 0 ? -1 : 1;
+                    }
+                }
+            }
+
+            if (shouldMove) {
+                if (moveDirection !== 0) {
+                    currentX += currentSpeed * moveDirection;
+                }
                 
                 const firstCard = track.firstElementChild;
-                // Calculamos el tamaño real de la tarjeta más el gap para saber cuándo moverla
+                const lastCard = track.lastElementChild;
                 const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
                 const cardWidth = firstCard.offsetWidth + gap;
 
-                // Cuando la tarjeta se desplaza totalmente a la izquierda, la pasamos al final
-                if (Math.abs(currentX) >= cardWidth) {
+                if (currentX <= -cardWidth) {
                     track.appendChild(firstCard);
-                    currentX += cardWidth; // Compensar la posición para que el cambio sea invisible
+                    currentX += cardWidth;
+                } else if (currentX > 0) {
+                    track.insertBefore(lastCard, firstCard);
+                    currentX -= cardWidth;
                 }
 
                 track.style.transform = `translateX(${currentX}px)`;
@@ -191,10 +221,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Pausa al hacer hover para poder hacer click en los botones
         track.addEventListener('mouseenter', () => {
-            isPaused = true;
+            if (!seekTargetId) isPaused = true;
         });
         track.addEventListener('mouseleave', () => {
-            isPaused = false;
+            if (!seekTargetId) isPaused = false;
+        });
+        
+        // Mini cards hover control
+        const miniCards = document.querySelectorAll('.mini-card');
+        miniCards.forEach(mc => {
+            mc.addEventListener('mouseenter', () => {
+                seekTargetId = mc.getAttribute('data-target');
+                isPaused = true; // Pause normal scrolling so it stays centered
+            });
+            mc.addEventListener('mouseleave', () => {
+                seekTargetId = null;
+                isPaused = false; // Resume normal scrolling
+            });
         });
     }
 
@@ -391,17 +434,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        /** Activa el audio con fade in */
+        /** Activa el audio */
         function activarAudio() {
             if (audio.currentTime === 0) {
                 audio.currentTime = 3;
             }
-            audio.volume = 0;
+            audio.volume = VOL_TARGET;
             let playPromise = audio.play();
             if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    fadeVolume(0, VOL_TARGET);
-                }).catch(() => {
+                playPromise.catch(() => {
                     // El navegador bloqueó el autoplay — esperamos interacción
                     sonidoActivo = false;
                     actualizarIcono();
@@ -410,12 +451,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        /** Desactiva con fade out */
+        /** Desactiva audio */
         function desactivarAudio() {
-            fadeVolume(audio.volume, 0, () => {
-                audio.pause();
-                audio.currentTime = 3;
-            });
+            clearInterval(fadeTimer);
+            audio.pause();
+            audio.volume = 0;
         }
 
         const iniciarEnPrimerClick = () => {

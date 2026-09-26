@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Maximiliano - Yoda Labs</title>
     <!-- Fuentes de Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500&family=Space+Grotesk:wght@500;700&family=Syne:wght@600;700&family=Zen+Dots&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500&family=Space+Grotesk:wght@500;700&family=Syne:wght@600;700&family=Zen+Dots&display=swap"
+        rel="stylesheet">
     <!-- Hojas de estilos compartidas -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/perfiles.css">
@@ -13,35 +16,35 @@
     <!-- Estilos personalizado -->
     <style>
         #tarjeta-perfil {
-            --verde-yoda: #ff9900;   
-            --verde-fuerza: #d18410; 
+            --verde-yoda: #ff9900;
+            --verde-fuerza: #d18410;
         }
 
         /* Personalización Scrollbar */
         ::-webkit-scrollbar {
             width: 12px;
         }
+
         ::-webkit-scrollbar-track {
             background: #090D14;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #d18410;
             border-radius: 6px;
             border: 3px solid #090D14;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #ff9900;
         }
     </style>
 </head>
+
 <body>
     <!-- Animación de estrellas -->
     <canvas id="espacio-canvas"></canvas>
-    <audio id="audio-tema" loop autoplay preload="auto">
-        <source src="song/theme.mp3" type="audio/mpeg">
-    </audio>
-
-<!-- Encabezado -->
+    <!-- Encabezado -->
     <header class="header-perfil">
         <a href="index.html" class="logo-contenedor">
             <img src="img/logo4.png" alt="Logo Yoda Labs" class="logo-nav-unico">
@@ -51,12 +54,10 @@
             <a href="index.html#texto-desc" class="nav-link">Sobre Nosotros</a>
             <a href="index.html#seccion-integrantes" class="nav-link">Staff</a>
             <a href="bitacora.html" class="nav-link">Bitácora</a>
-            <a href="https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git" target="_blank" class="nav-link icon-link" title="Repositorio en GitHub">
+            <a href="https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git" target="_blank"
+                class="nav-link icon-link" title="Repositorio en GitHub">
                 <img src="img/github-blanco.png" alt="GitHub Yoda Labs" class="icono-github-nav">
             </a>
-            <button class="nav-link btn-sonido" id="btn-sonido" title="Activar sonido" aria-label="Activar o silenciar música">
-                <svg class="icono-sonido" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="onda-base" d="M11 5L6 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="currentColor" fill-opacity=".12"/><path class="onda onda-1" d="M15.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="onda onda-2" d="M18.5 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="icono-mute" d="M17 9l4 4m0-4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"/></svg>
-            </button>
         </nav>
     </header>
 
@@ -64,7 +65,7 @@
         <!-- Tarjeta con efecto Flip -->
         <section class="tarjeta-flip" id="tarjeta-perfil">
             <div class="tarjeta-inner">
-                
+
                 <!-- LADO FRONTAL -->
                 <div class="tarjeta-frente">
                     <div class="columna-izq">
@@ -73,8 +74,8 @@
                     </div>
                     <div class="columna-der">
                         <h1 class="nombre-perfil">Maximiliano Millan</h1>
-                        <p class="datos-personales">34 años | Buenos Aires</p>
-                        
+                        <p class="datos-personales">37 años | Buenos Aires</p>
+
                         <div class="tecnologias">
                             <img src="img/icono-html5.png" alt="HTML5" class="icono-tech">
                             <img src="img/icono-css3.png" alt="CSS3" class="icono-tech">
@@ -94,7 +95,8 @@
                             </ul>
                         </div>
 
-                        <a href="https://mmillan.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-portfolio-perfil">
+                        <a href="https://mmillan.vercel.app/" target="_blank" rel="noopener noreferrer"
+                            class="btn-portfolio-perfil">
                             <span>Ver Portfolio</span>
                             <span>↗</span>
                         </a>
@@ -108,35 +110,41 @@
                     </div>
                     <div class="columna-der">
                         <h1 class="nombre-perfil">Maximiliano Millan</h1>
-                        <p class="datos-personales">34 años | Buenos Aires</p>
-                        
+                        <p class="datos-personales">37 años | Buenos Aires</p>
+
                         <div class="favoritos">
                             <h3>Películas Favoritas</h3>
                             <div class="galeria-peliculas">
-                                <a href="https://www.youtube.com/watch?v=5DQAZtFHLEA" target="_blank" class="peli-item">
-                                    <img src="img/about-time.jpg" alt="About Time" title="Una cuestion de tiempo">
+                                <a href="https://youtu.be/Lv4BNEn4kKo?si=2CSVaZMdByx4zsMk" target="_blank"
+                                    class="peli-item">
+                                    <img src="img/eternal.jpg" alt="Eterno resplandor de una mente sin recuerdo"
+                                        title="Eterno resplandor de una mente sin recuerdo">
                                 </a>
                                 <a href="https://www.youtube.com/watch?v=EZngbEj3W1Y" target="_blank" class="peli-item">
                                     <img src="img/les-miserables.jpg" alt="Les Miserables" title="Los Miserables">
                                 </a>
-                                <a href="https://www.youtube.com/watch?v=Ov0PdD5c7m0" target="_blank" class="peli-item">
-                                    <img src="img/pride-prejudice.jpg" alt="Pride & Prejudice" title="Orgullo y prejuicio">
+                                <a href="https://youtu.be/TzUxLqC9QBU?si=rMagV3qT_PyfAQiX" target="_blank"
+                                    class="peli-item">
+                                    <img src="img/donnie.jpg" alt="Donnie Darko" title="Donnie Darko">
                                 </a>
                             </div>
 
                             <h3>Discos Favoritos</h3>
                             <div class="galeria-discos">
-                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_n2z-As3TqFt61RnhDrmJDZCSpk3muFdXA&si=gxlKW6Oe5SY60hOa" target="_blank" class="disco-item">
-                                    <img src="img/arirang-bts.jpg" alt="Portada Arirang BTS">
-                                    <span>Arirang<br>BTS</span>
+                                <a href="https://music.youtube.com/watch?v=1GhEsLAt1Gw" target="_blank"
+                                    class="disco-item">
+                                    <img src="img/maderita.jpg" alt="Portada Maderita">
+                                    <span>Maderita<br>Los Visitantes</span>
                                 </a>
-                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_mDcGp6Foei5zEIv-cleoK4MpuK6MHGAns&si=L6znYJbnTVFN1t2O" target="_blank" class="disco-item">
-                                    <img src="img/rpwp-rm.jpg" alt="Portada Right Place Wrong Person RM">
-                                    <span>Right Place<br>RM</span>
+                                <a href="https://music.youtube.com/watch?v=GlH4kyYhfWc&si=Mh_MxMzLrDzVA5n2"
+                                    target="_blank" class="disco-item">
+                                    <img src="img/cafrune.jpg" alt="Portada Right Place Wrong Person RM">
+                                    <span>Cantor de pueblo<br>Jorge Cafrune</span>
                                 </a>
-                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_l-Rd8aIoTqerGzAYt2UBWCA9lmNY_slEw&si=_6rmxcVHQeYfDKjh" target="_blank" class="disco-item">
-                                    <img src="img/brand-new-eyes-paramore.jpg" alt="Portada Brand New Eyes Paramore">
-                                    <span>Brand New Eyes<br>Paramore</span>
+                                <a href="https://music.youtube.com/watch?v=gWB4uleLjyo&si=yTHkMoMzWcFW7RQL"
+                                    target="_blank" class="disco-item">
+                                    <img src="img/winter.jpg" alt="Portada Las cuatro estaciones">
+                                    <span>Las cuatro estaciones<br>Vivaldi</span>
                                 </a>
                             </div>
                         </div>
@@ -147,9 +155,13 @@
         </section>
 
         <nav class="navegacion-tripulacion" aria-label="Navegación entre integrantes">
-            <a href="leonel.html" class="btn-tripulacion btn-tripulacion-anterior"><span aria-hidden="true">◄</span><span><small>ANTERIOR</small>Leonel</span></a>
-            <a href="index.html#seccion-integrantes" class="indicador-tripulacion" aria-label="Volver al staff">YL · 02 / 05</a>
-            <a href="yohana.html" class="btn-tripulacion btn-tripulacion-siguiente"><span><small>SIGUIENTE</small>Yohana</span><span aria-hidden="true">►</span></a>
+            <a href="leonel.html" class="btn-tripulacion btn-tripulacion-anterior"><span
+                    aria-hidden="true">◄</span><span><small>ANTERIOR</small>Leonel</span></a>
+            <a href="index.html#seccion-integrantes" class="indicador-tripulacion" aria-label="Volver al staff">YL · 02
+                / 05</a>
+            <a href="yohana.html"
+                class="btn-tripulacion btn-tripulacion-siguiente"><span><small>SIGUIENTE</small>Yohana</span><span
+                    aria-hidden="true">►</span></a>
         </nav>
     </main>
 
@@ -162,4 +174,5 @@
     <script src="js/main.js"></script>
     <script src="js/perfiles.js"></script>
 </body>
+
 </html>
