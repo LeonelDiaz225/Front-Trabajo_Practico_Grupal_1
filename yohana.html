@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Yohana - Yoda Labs</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500&family=Space+Grotesk:wght@500;700&family=Syne:wght@600;700&family=Zen+Dots&display=swap" rel="stylesheet">
+    <!-- Hojas de estilos compartidas -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/perfiles.css">
+
+    <!-- Estilos personalizado -->
+    <style>
+        #tarjeta-perfil {
+            --verde-yoda: #ff66b2;   
+            --verde-fuerza: #c70c6a; 
+        }
+
+        /* Personalización Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090D14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c70c6a;
+            border-radius: 6px;
+            border: 3px solid #090D14;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff66b2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animación de estrellas -->
+    <canvas id="espacio-canvas"></canvas>
+    <!-- Encabezado -->
+    <header class="header-perfil">
+        <a href="index.html" class="logo-contenedor">
+            <img src="img/logo4.png" alt="Logo Yoda Labs" class="logo-nav-unico">
+        </a>
+        <nav class="navegacion-principal">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="index.html#texto-desc" class="nav-link">Sobre Nosotros</a>
+            <a href="index.html#seccion-integrantes" class="nav-link">Staff</a>
+            <a href="bitacora.html" class="nav-link">Bitácora</a>
+            <a href="https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git" target="_blank" class="nav-link icon-link" title="Repositorio en GitHub">
+                <img src="img/github-blanco.png" alt="GitHub Yoda Labs" class="icono-github-nav">
+            </a>
+            </nav>
+    </header>
+
+    <main class="contenedor-principal">
+        <!-- Tarjeta con efecto Flip -->
+        <section class="tarjeta-flip" id="tarjeta-perfil">
+            <div class="tarjeta-inner">
+                
+                <!-- LADO FRONTAL -->
+                <div class="tarjeta-frente">
+                    <div class="columna-izq">
+                        <img src="img/yoda7.jpg" alt="Avatar Yoda" class="img-perfil">
+                        <p class="click-hint">¡Más sobre mí!</p>
+                    </div>
+                    <div class="columna-der">
+                        <h1 class="nombre-perfil">Yohana Olivera</h1>
+                        <p class="datos-personales">35 años | Tucumán</p>
+                        
+                        <div class="tecnologias">
+                            <img src="img/icono-html5.png" alt="HTML5" class="icono-tech">
+                            <img src="img/icono-css3.png" alt="CSS3" class="icono-tech">
+                            <img src="img/icono-js.png" alt="JavaScript" class="icono-tech">
+                            <img src="img/icono-python.png" alt="Python" class="icono-tech">
+                            <img src="img/icono-csharp.png" alt="C#" class="icono-tech">
+                            <img src="img/github-blanco.png" alt="GitHub" class="icono-tech">
+                        </div>
+
+                        <div class="cualidades">
+                            <h3>Cualidades y Habilidades</h3>
+                            <ul>
+                                <li>Mentalidad analítica</li>
+                                <li>Resolución de problemas</li>
+                                <li>Trabajo en equipo</li>
+                                <li>Atención al detalle</li>
+                            </ul>
+                        </div>
+
+                        <a href="https://yohaolivera.github.io/pfo-portfolio-yohana/" target="_blank" rel="noopener noreferrer" class="btn-portfolio-perfil">
+                            <span>Ver Portfolio</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- LADO TRASERO -->
+                <div class="tarjeta-dorso">
+                    <div class="columna-izq">
+                        <img src="img/avatar-yohana.jpg" alt="Avatar Yohana" class="img-perfil">
+                    </div>
+                    <div class="columna-der">
+                        <h1 class="nombre-perfil">Yohana Olivera</h1>
+                        <p class="datos-personales">35 años | Tucumán</p>
+                        
+                        <div class="favoritos">
+                            <h3>Películas Favoritas</h3>
+                            <div class="galeria-peliculas">
+                                <a href="https://www.youtube.com/watch?v=VjctHUEmutw" target="_blank" class="peli-item">
+                                    <img src="img/el-justiciero.png" alt="El Justiciero" title="El Justiciero">
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=xFALsPCeJvE" target="_blank" class="peli-item">
+                                    <img src="img/talentos-ocultos.png" alt="Talentos Ocultos" title="Talentos Ocultos">
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=4OcXtpLjvVY" target="_blank" class="peli-item">
+                                    <img src="img/el-unico-sobreviviente.png" alt="El Único Sobreviviente" title="El Único Sobreviviente">
+                                </a>
+                            </div>
+
+                            <h3>Discos Favoritos</h3>
+                            <div class="galeria-discos">
+                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_nE-SkwNA6lYF99wd-MHzJVqThnUIJGe3I&si=ELvJPHNHsdHTwKkH" target="_blank" class="disco-item">
+                                    <img src="img/meteora-linkinpark.png" alt="Portada Meteora Linkin Park" title="Meteora - Linkin Park">
+                                </a>
+                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_nQY-UERFpsL1d5UTPVMjX7mtnVlKg7D4w&si=dOxaG_nfEFG38LBE" target="_blank" class="disco-item">
+                                    <img src="img/encore-eminem.png" alt="Portada Encore Eminem" title="Encore - Eminem">
+                                </a>
+                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_nDVLWRxRtpfZl5tZiO0U_utWz_vRe1Pfg&si=SoreEF-O_hbA2DR3" target="_blank" class="disco-item">
+                                    <img src="img/fallen-evanescence.png" alt="Portada Fallen Evanescence" title="Fallen - Evanescence">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <nav class="navegacion-tripulacion" aria-label="Navegación entre integrantes">
+            <a href="maximiliano.html" class="btn-tripulacion btn-tripulacion-anterior"><span aria-hidden="true">◄</span><span><small>ANTERIOR</small>Maximiliano</span></a>
+            <a href="index.html#seccion-integrantes" class="indicador-tripulacion" aria-label="Volver al staff">YL · 03 / 05</a>
+            <a href="melisa.html" class="btn-tripulacion btn-tripulacion-siguiente"><span><small>SIGUIENTE</small>Melisa</span><span aria-hidden="true">►</span></a>
+        </nav>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-sitio">
+        <p>Yoda Labs · TP1 · FrontEnd · IFTS N°29 · 2026</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/perfiles.js"></script>
+</body>
+</html>

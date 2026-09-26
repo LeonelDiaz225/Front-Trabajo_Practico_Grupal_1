@@ -1,93 +1,283 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Sitio del Grupo 29 para el Trabajo Práctico 1 de desarrollo web."
-    />
-    <title>Grupo 29 | TP1</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/main.js" defer></script>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container header-content">
-        <a class="brand" href="index.html">Grupo 29</a>
-        <nav class="main-nav" aria-label="Navegación principal">
-          <a class="active" href="index.html">Inicio</a>
-          <a href="pages/bitacora.html">Bitácora</a>
-          <button
-            class="theme-toggle"
-            type="button"
-            data-theme-toggle
-            aria-label="Activar modo oscuro"
-          >
-            Modo oscuro
-          </button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoda Labs - Trabajo Práctico 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500&family=Space+Grotesk:wght@500;700&family=Syne:wght@600;700&family=Zen+Dots&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Canvas del espacio -->
+    <canvas id="espacio-canvas"></canvas>
+
+    <!-- Audio: Tema Star Wars -->
+    <audio id="audio-tema" loop autoplay preload="auto" volume="0.4">
+        <!-- Coloca tu archivo de audio en song/thema.mp3 -->
+        <source src="song/theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Encabezado -->
+    <header class="header-fijo" id="header-oculto">
+        <a href="index.html" class="logo-contenedor">
+            <img src="img/logo4.png" alt="Logo Yoda Labs" class="logo-nav-unico">
+        </a>
+        <!-- Botón Hamburguesa -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav class="navegacion-principal" id="nav-principal">
+            <a href="#seccion-hero" class="nav-link activo">Inicio</a>
+            <a href="#texto-desc" class="nav-link">Sobre Nosotros</a>
+            <a href="#seccion-integrantes" class="nav-link">Staff</a>
+            <a href="bitacora.html" class="nav-link">Bitácora</a>
+            <a href="https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git" target="_blank" class="nav-link icon-link" title="Repositorio en GitHub">
+                <img src="img/github-blanco.png" alt="GitHub Yoda Labs" class="icono-github-nav">
+            </a>
+            <!-- Botón de Sonido -->
+            <button class="nav-link btn-sonido" id="btn-sonido" title="Activar sonido" aria-label="Toggle sonido">
+                <svg class="icono-sonido" id="icono-sonido" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Altavoz base -->
+                    <path class="onda-base" d="M11 5L6 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="rgba(57,255,122,0.15)"/>
+                    <!-- Ondas de sonido -->
+                    <path class="onda onda-1" d="M15.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <path class="onda onda-2" d="M18.5 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <!-- X de mute (oculta por defecto) -->
+                    <path class="icono-mute" d="M17 9l4 4m0-4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"/>
+                </svg>
+            </button>
         </nav>
-      </div>
     </header>
 
-    <main>
-      <section class="hero container">
-        <p class="eyebrow">Trabajo Práctico 1</p>
-        <h1>Grupo 29</h1>
-        <p class="lead">
-          Somos un equipo que aprende desarrollo web colaborativo, combinando
-          práctica, organización y creatividad para construir experiencias
-          claras y accesibles.
-        </p>
-        <a class="button" href="#integrantes">Conocer al equipo</a>
-      </section>
+    <div class="contenedor-index">
+        <!-- Hero: Primer pantalla completa -->
+        <section class="seccion-hero seccion-completa" id="seccion-hero">
+            <div class="hero-logo-wrapper revelable visible-scroll">
+                <img src="img/logo-yodalabs.png" alt="Yoda Labs" class="hero-logo-img">
+                <div class="hero-divisor"></div>
+                <p class="hero-tagline">FRONT END DIVISION &nbsp;&bull;&nbsp; IFTS N°29 &nbsp;&bull;&nbsp; 2026</p>
+            </div>
+        </section>
 
-      <section class="container section" id="integrantes">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Nuestro equipo</p>
-            <h2>Integrantes</h2>
-          </div>
-          <p>Seleccioná un perfil para conocer más.</p>
-        </div>
-        <div class="member-grid">
-          <a class="member-card" href="pages/leonel-diaz.html"
-            ><span class="member-number">01</span>
-            <h3>Leonel Diaz</h3>
-            <span>Ver perfil →</span></a
-          >
-          <a class="member-card" href="pages/integrante2.html"
-            ><span class="member-number">02</span>
-            <h3>Integrante 2</h3>
-            <span>Ver perfil →</span></a
-          >
-          <a class="member-card" href="pages/integrante3.html"
-            ><span class="member-number">03</span>
-            <h3>Integrante 3</h3>
-            <span>Ver perfil →</span></a
-          >
-          <a class="member-card" href="pages/integrante4.html"
-            ><span class="member-number">04</span>
-            <h3>Integrante 4</h3>
-            <span>Ver perfil →</span></a
-          >
-          <a class="member-card" href="pages/integrante5.html"
-            ><span class="member-number">05</span>
-            <h3>Integrante 5</h3>
-            <span>Ver perfil →</span></a
-          >
-        </div>
-      </section>
-    </main>
+        <!-- Sección Sobre Nosotros: Segunda pantalla completa -->
+        <section class="seccion-descripcion seccion-completa" id="texto-desc">
+            <div class="contenedor-sobre-nosotros revelable">
+                <div class="sobre-nosotros-imagen-wrapper">
+                    <img src="img/yodalabs.png" alt="Yoda Labs Simbolo Galactico" class="sobre-nosotros-img">
+                    <div class="sobre-nosotros-glow"></div>
+                </div>
+                <div class="sobre-nosotros-contenido">
+                    <span class="subtitulo-seccion-landing">IDENTIFICACIÓN // MISIÓN</span>
+                    <h2 class="titulo-sobre-nosotros">Sobre Nosotros</h2>
+                    <p>Desarrollando el futuro del entorno web. En Yoda Labs creemos que el verdadero dominio del código nace 
+                        del equilibrio: el lado luminoso del frontend, que da forma y vida a cada interfaz, y la fuerza del 
+                        backend, que sostiene todo desde las sombras. Codificamos soluciones limpias y funcionales, porque un 
+                        buen desarrollo no elige un lado: los conecta.</p>
+                </div>
+            </div>
+        </section>
 
-    <footer class="site-footer">
-      <div class="container"><p>Grupo 29 · Tecnicatura · TP1</p></div>
+        <!-- Tarjetas de Integrantes: Tercera pantalla completa -->
+        <main id="seccion-integrantes" class="main-integrantes seccion-completa">
+
+            <div class="contenedor-staff revelable">
+                <div class="staff-encabezado">
+                    <span class="subtitulo-seccion-landing">TRANSMISIÓN // TRIPULACIÓN YODA LABS</span>
+                    <h2 class="titulo-staff">Staff</h2>
+                    <p class="staff-descripcion">Seleccioná un holocrón para conocer a cada integrante de la tripulación.</p>
+                </div>
+                <!-- Viewport del carrusel -->
+                <div class="carousel-viewport">
+                    <div class="carousel-fade-left"></div>
+                    <div class="carousel-fade-right"></div>
+                    <section class="grilla-integrantes" id="carousel-track">
+                
+                <!-- Tarjeta Leonel -->
+                <article class="tarjeta-resumen" id="card-leonel" style="--card-color: #4da3ff">
+                    <div class="card-scanline"></div>
+                    <div class="card-badge-header">
+                        <span class="card-id-code">YL-01 // JEDI</span>
+                        <span class="card-status-dot"></span>
+                    </div>
+                    <div class="card-cuerpo">
+                        <div class="avatar-marco">
+                            <img src="img/yoda2.jpg" alt="Avatar Leonel" class="avatar-index">
+                            <span class="avatar-aura"></span>
+                        </div>
+                        <div class="card-info">
+                            <h2>Leonel</h2>
+                            <p class="rol-texto">Arquitectura & Git Lead</p>
+                            <div class="card-telemetria">
+                                <span class="telemetria-item"><span>AFINIDAD:</span> JEDI GUARDIAN</span>
+                                <span class="telemetria-item"><span>SISTEMA:</span> SANTA FE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-botones">
+                        <a href="leonel.html" class="btn-perfil">
+                            <span class="btn-texto">Holocrón</span>
+                            <span class="btn-flecha">►</span>
+                        </a>
+                        <a href="https://repo-front-phi.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-perfil btn-portfolio">
+                            <span class="btn-texto">Portfolio</span>
+                            <span class="btn-flecha">↗</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta Maximiliano -->
+                <article class="tarjeta-resumen" id="card-maxi" style="--card-color: #ff9900">
+                    <div class="card-scanline"></div>
+                    <div class="card-badge-header">
+                        <span class="card-id-code">YL-02 // SENTINEL</span>
+                        <span class="card-status-dot"></span>
+                    </div>
+                    <div class="card-cuerpo">
+                        <div class="avatar-marco">
+                            <img src="img/yoda10.jpg" alt="Avatar Maximiliano" class="avatar-index">
+                            <span class="avatar-aura"></span>
+                        </div>
+                        <div class="card-info">
+                            <h2>Max</h2>
+                            <p class="rol-texto">Ingeniería & Core Frontend</p>
+                            <div class="card-telemetria">
+                                <span class="telemetria-item"><span>AFINIDAD:</span> JEDI SENTINEL</span>
+                                <span class="telemetria-item"><span>SISTEMA:</span> BUENOS AIRES</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-botones">
+                        <a href="maximiliano.html" class="btn-perfil">
+                            <span class="btn-texto">Holocrón</span>
+                            <span class="btn-flecha">►</span>
+                        </a>
+                        <a href="https://mmillan.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-perfil btn-portfolio">
+                            <span class="btn-texto">Portfolio</span>
+                            <span class="btn-flecha">↗</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta Yohana -->
+                <article class="tarjeta-resumen" id="card-yohana" style="--card-color: #ff66b2">
+                    <div class="card-scanline"></div>
+                    <div class="card-badge-header">
+                        <span class="card-id-code">YL-03 // MYSTIC</span>
+                        <span class="card-status-dot"></span>
+                    </div>
+                    <div class="card-cuerpo">
+                        <div class="avatar-marco">
+                            <img src="img/yoda7.jpg" alt="Avatar Yohana" class="avatar-index">
+                            <span class="avatar-aura"></span>
+                        </div>
+                        <div class="card-info">
+                            <h2>Yohana</h2>
+                            <p class="rol-texto">Estructura & Semántica</p>
+                            <div class="card-telemetria">
+                                <span class="telemetria-item"><span>AFINIDAD:</span> FORCE ADEPT</span>
+                                <span class="telemetria-item"><span>SISTEMA:</span> TUCUMÁN</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-botones">
+                        <a href="yohana.html" class="btn-perfil">
+                            <span class="btn-texto">Holocrón</span>
+                            <span class="btn-flecha">►</span>
+                        </a>
+                        <a href="https://yohaolivera.github.io/pfo-portfolio-yohana/" target="_blank" rel="noopener noreferrer" class="btn-perfil btn-portfolio">
+                            <span class="btn-texto">Portfolio</span>
+                            <span class="btn-flecha">↗</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta Melisa -->
+                <article class="tarjeta-resumen" id="card-melisa" style="--card-color: #e63c3c">
+                    <div class="card-scanline"></div>
+                    <div class="card-badge-header">
+                        <span class="card-id-code">YL-04 // KYBER</span>
+                        <span class="card-status-dot"></span>
+                    </div>
+                    <div class="card-cuerpo">
+                        <div class="avatar-marco">
+                            <img src="img/yoda6.jpg" alt="Avatar Melisa" class="avatar-index">
+                            <span class="avatar-aura"></span>
+                        </div>
+                        <div class="card-info">
+                            <h2>Melisa</h2>
+                            <p class="rol-texto">Contenidos & QA Interface</p>
+                            <div class="card-telemetria">
+                                <span class="telemetria-item"><span>AFINIDAD:</span> KYBER STRIKER</span>
+                                <span class="telemetria-item"><span>SISTEMA:</span> BUENOS AIRES</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-botones">
+                        <a href="melisa.html" class="btn-perfil">
+                            <span class="btn-texto">Holocrón</span>
+                            <span class="btn-flecha">►</span>
+                        </a>
+                        <a href="https://portfolio-melisa.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-perfil btn-portfolio">
+                            <span class="btn-texto">Portfolio</span>
+                            <span class="btn-flecha">↗</span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta Itziar -->
+                <article class="tarjeta-resumen" id="card-itz" style="--card-color: #b266ff">
+                    <div class="card-scanline"></div>
+                    <div class="card-badge-header">
+                        <span class="card-id-code">YL-05 // MASTER</span>
+                        <span class="card-status-dot"></span>
+                    </div>
+                    <div class="card-cuerpo">
+                        <div class="avatar-marco">
+                            <img src="img/yoda1.jpg" alt="Avatar Itziar" class="avatar-index">
+                            <span class="avatar-aura"></span>
+                        </div>
+                        <div class="card-info">
+                            <h2>Itziar</h2>
+                            <p class="rol-texto">Desarrollo, Diseño & UX</p>
+                            <div class="card-telemetria">
+                                <span class="telemetria-item"><span>AFINIDAD:</span> JEDI CONSULAR</span>
+                                <span class="telemetria-item"><span>SISTEMA:</span> BUENOS AIRES</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-botones">
+                        <a href="itziar.html" class="btn-perfil">
+                            <span class="btn-texto">Holocrón</span>
+                            <span class="btn-flecha">►</span>
+                        </a>
+                        <a href="https://pfo-1-portfolio-itziar-urriola.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-perfil btn-portfolio">
+                            <span class="btn-texto">Portfolio</span>
+                            <span class="btn-flecha">↗</span>
+                        </a>
+                    </div>
+                </article>
+
+            </section>
+                </div><!-- /carousel-viewport -->
+                
+                <div class="mini-cards-container">
+                    <a href="leonel.html" class="mini-card" data-target="card-leonel">Leonel</a>
+                    <a href="maximiliano.html" class="mini-card" data-target="card-maxi">Max</a>
+                    <a href="yohana.html" class="mini-card" data-target="card-yohana">Yohana</a>
+                    <a href="melisa.html" class="mini-card" data-target="card-melisa">Melisa</a>
+                    <a href="itziar.html" class="mini-card" data-target="card-itz">Itziar</a>
+                </div>
+            </div><!-- /contenedor-staff -->
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-sitio">
+        <p>Yoda Labs · TP1 · FrontEnd · IFTS N°29 · 2026</p>
     </footer>
-  </body>
+
+    <script src="js/main.js"></script>
+</body>
 </html>

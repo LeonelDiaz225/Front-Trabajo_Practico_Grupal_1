@@ -1,363 +1,1158 @@
+/*VARIABLES Y CONFIGURACIÓN BASE*/
 :root {
-  --ink: #17212b;
-  --muted: #5f6b76;
-  --paper: #f5f7f8;
-  --surface: #ffffff;
-  --line: #d8e0e5;
-  --accent: #0c7283;
-  --accent-dark: #07515e;
-  --accent-soft: #d9f0f2;
+    --bg-espacio: #070C12;
+    --verde-yoda: #39FF7A;       /* Sable de luz Star Wars */
+    --verde-fuerza: #1DB954;     /* Verde sable medio */
+    --verde-sutil: #0F7A3A;      /* Verde oscuro para bordes sutiles */
+    --azul-labs: #0D2233;
+    --texto-claro: #E2E8F0;
+    
+    --fuente-titulos: 'Space Grotesk', sans-serif;
+    --fuente-texto: 'Inter', sans-serif;
+    --fuente-nav: 'Orbitron', sans-serif;
+    --fuente-nombres: 'Syne', sans-serif;
+    --fuente-roles: 'Plus Jakarta Sans', sans-serif;
+    --fuente-especial: 'Zen Dots', sans-serif;
 }
-[data-theme="dark"] {
-  --ink: #edf5f5;
-  --muted: #adbec2;
-  --paper: #172126;
-  --surface: #213037;
-  --line: #405158;
-  --accent: #71d2d8;
-  --accent-dark: #a3e7ea;
-  --accent-soft: #29494e;
-}
+
 * {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE y Edge clásico */
 }
+
+/* Ocultar barra de scroll en navegadores basados en WebKit (Chrome, Safari, Edge) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
 body {
-  margin: 0;
-  color: var(--ink);
-  background: var(--paper);
-  font-family: "Montserrat", sans-serif;
-  line-height: 1.6;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+    background-color: var(--bg-espacio);
+    background-image: 
+        radial-gradient(circle at 50% 40%, rgba(13, 34, 51, 0.5) 0%, rgba(7, 12, 18, 0.8) 60%, rgba(7, 12, 18, 0.97) 100%),
+        url('../img/fondo.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--texto-claro);
+    font-family: var(--fuente-texto);
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-a {
-  color: inherit;
-  text-decoration: none;
-}
-.container {
-  width: min(1120px, calc(100% - 48px));
-  margin: 0 auto;
-}
-.site-header {
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-}
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 76px;
-  gap: 24px;
-}
-.brand {
-  color: var(--accent);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  font-size: 0.88rem;
-  font-weight: 600;
-}
-.main-nav a {
-  padding: 8px 0;
-  border-bottom: 2px solid transparent;
-}
-.main-nav a:hover,
-.main-nav a.active {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-.theme-toggle,
-.button {
-  border: 0;
-  border-radius: 4px;
-  padding: 11px 16px;
-  color: #fff;
-  background: var(--accent);
-  font: inherit;
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-.theme-toggle:hover,
-.button:hover {
-  background: var(--accent-dark);
-}
-.hero {
-  padding-top: 110px;
-  padding-bottom: 110px;
-  max-width: 850px;
-  margin-left: max(24px, calc((100% - 1120px) / 2));
-}
-.eyebrow {
-  margin: 0 0 12px;
-  color: var(--accent);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-h1 {
-  margin-bottom: 18px;
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
-h2 {
-  font-size: 2rem;
-  line-height: 1.15;
-}
-h3 {
-  margin-bottom: 12px;
-  font-size: 1.15rem;
-}
-.lead {
-  max-width: 660px;
-  margin-bottom: 30px;
-  color: var(--muted);
-  font-size: 1.05rem;
-}
-.section {
-  padding-top: 70px;
-  padding-bottom: 90px;
-}
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  margin-bottom: 30px;
-  border-bottom: 1px solid var(--line);
-}
-.section-heading > p {
-  color: var(--muted);
-}
-.member-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.member-card {
-  min-height: 180px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--surface);
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
-}
-.member-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-}
-.member-card span:last-child {
-  color: var(--accent);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-.member-number {
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-.site-footer {
-  padding: 26px 0;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-.back-link {
-  display: inline-block;
-  margin-bottom: 44px;
-  color: var(--accent);
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-.profile-layout {
-  display: grid;
-  grid-template-columns: minmax(230px, 0.7fr) 1.3fr;
-  gap: 70px;
-  align-items: start;
-}
-.profile-intro {
-  padding-right: 30px;
-  border-right: 1px solid var(--line);
-}
-.profile-intro h1 {
-  font-size: 3.2rem;
-}
-.avatar {
-  width: 150px;
-  height: 150px;
-  margin-bottom: 28px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: var(--accent-soft);
-}
-.avatar-placeholder {
-  display: grid;
-  place-items: center;
-  color: var(--accent);
-  font-size: 2rem;
-  font-weight: 700;
-}
-.facts {
-  display: grid;
-  gap: 14px;
-  margin: 30px 0 0;
-}
-.facts div {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 1px solid var(--line);
-}
-dt {
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-dd {
-  margin: 0;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-.tabs {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 28px;
-  border-bottom: 1px solid var(--line);
-}
-.tab-button {
-  padding: 12px 14px;
-  border: 0;
-  border-bottom: 2px solid transparent;
-  color: var(--muted);
-  background: transparent;
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-.tab-button.active {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-.tab-panel[hidden] {
-  display: none;
-}
-.detail-list {
-  padding-left: 22px;
-}
-.detail-list li {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--line);
-}
-.table-wrapper {
-  overflow-x: auto;
-}
-table {
-  width: 100%;
-  min-width: 680px;
-  border-collapse: collapse;
-  background: var(--surface);
-}
-th,
-td {
-  padding: 16px;
-  border: 1px solid var(--line);
-  text-align: left;
-  vertical-align: top;
-}
-th {
-  color: var(--accent);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-}
-td {
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-@media (max-width: 1200px) {
-  .hero {
-    padding-top: 90px;
-    padding-bottom: 90px;
-  }
-  .profile-layout {
-    gap: 45px;
-  }
-}
-@media (max-width: 900px) {
-  .member-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .profile-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .profile-intro {
-    padding-right: 0;
-    padding-bottom: 30px;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-}
-@media (max-width: 400px) {
-  .container {
-    width: min(100% - 28px, 1120px);
-  }
-  .header-content,
-  .section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .header-content {
-    padding: 16px 0;
-    gap: 12px;
-  }
-  .main-nav {
+
+/*FONDO ESTELAR (Canvas con mezcla luminosa sobre la textura) */
+#espacio-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.95;
+}
+
+/*ENCABEZADO FIJO*/
+.header-fijo {
+    position: fixed;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 3rem;
+    background-color: rgba(9, 13, 20, 0.92);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--verde-fuerza);
+    transition: top 0.4s ease-in-out;
+}
+
+.header-fijo.visible {
+    top: 0;
+}
+
+.logo-contenedor {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.logo-contenedor:hover {
+    transform: scale(1.05);
+}
+
+.logo-nav-unico {
+    height: 35px;
+    width: auto;
+}
+
+.navegacion-principal {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 12px 18px;
-  }
-  .theme-toggle {
-    margin-left: auto;
-  }
-  .hero {
-    padding-top: 70px;
-    padding-bottom: 70px;
-    margin-left: auto;
-  }
-  .member-grid {
-    grid-template-columns: 1fr;
-  }
-  h1 {
-    font-size: 2.8rem;
-  }
-  .profile-intro h1 {
-    font-size: 2.4rem;
-  }
-  .tabs {
-    overflow-x: auto;
-  }
-  .tab-button {
+}
+
+.nav-link {
+    color: var(--texto-claro);
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
     white-space: nowrap;
-  }
+}
+
+.icono-github-nav {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.3s ease;
+}
+
+.icon-link:hover {
+    background-color: transparent; 
+}
+
+.icon-link:hover .icono-github-nav {
+    transform: scale(1.2);
+}
+
+/* ── Botón Hamburguesa (Móvil) ── */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--verde-yoda);
+    transition: all 0.3s ease;
+}
+
+/* Animación del menú hamburguesa */
+.menu-toggle.abierto .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.abierto .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.abierto .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ── Botón de Sonido ── */
+.btn-sonido {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.45rem 0.6rem;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-sonido:hover {
+    background-color: var(--azul-labs);
+}
+
+.icono-sonido {
+    width: 22px;
+    height: 22px;
+    color: var(--texto-claro);
+    transition: color 0.3s ease, filter 0.3s ease;
+}
+
+/* Estado activo: ícono en verde sable con glow */
+.btn-sonido.sonido-activo .icono-sonido {
+    color: var(--verde-yoda);
+    filter: drop-shadow(0 0 6px rgba(57, 255, 122, 0.8));
+}
+
+/* Ondas que pulsan cuando el sonido está ON */
+.btn-sonido.sonido-activo .onda-1 {
+    animation: pulsarOnda 1.6s ease-in-out infinite;
+}
+.btn-sonido.sonido-activo .onda-2 {
+    animation: pulsarOnda 1.6s ease-in-out infinite 0.3s;
+}
+
+@keyframes pulsarOnda {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
+/* Estado mute: ícono apagado */
+.btn-sonido.sonido-mute .icono-sonido {
+    color: #4a5568;
+}
+.btn-sonido.sonido-mute .onda-1,
+.btn-sonido.sonido-mute .onda-2 {
+    display: none;
+}
+
+.nav-link:hover, .nav-link.activo {
+    background-color: var(--azul-labs);
+    color: var(--verde-yoda);
+}
+
+/* INDEX Y SISTEMA DE SECCIONES CENTRADAS PANTALLA A PANTALLA */
+.contenedor-index {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Cada sección ocupa la pantalla completa y se centra vertical y horizontalmente */
+.seccion-completa {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 1.5rem 2rem 1.5rem;
+    position: relative;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+/* 1. Hero: Logo compuesto (imagen + tagline) */
+.seccion-hero {
+    flex-direction: column;
+    padding-top: 2rem;
+    gap: 0;
+}
+
+.hero-logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2rem;
+    animation: flotar 5s ease-in-out infinite;
+}
+
+/* Imagen del logo principal */
+.hero-logo-img {
+    width: clamp(440px, 76vw, 920px);
+    height: auto;
+    /* Convierte el PNG (verde sobre blanco) a sable verde sobre transparente */
+    filter:
+        brightness(0) saturate(100%)
+        invert(1)
+        sepia(1)
+        saturate(6)
+        hue-rotate(90deg)
+        brightness(1.1)
+        drop-shadow(0 0 18px rgba(57, 255, 122, 0.9))
+        drop-shadow(0 0 45px rgba(57, 255, 122, 0.5))
+        drop-shadow(0 0 90px rgba(57, 255, 122, 0.2));
+    transition: filter 0.5s ease;
+}
+
+.hero-logo-img:hover {
+    filter:
+        brightness(0) saturate(100%)
+        invert(1)
+        sepia(1)
+        saturate(6)
+        hue-rotate(90deg)
+        brightness(1.25)
+        drop-shadow(0 0 25px rgba(57, 255, 122, 1))
+        drop-shadow(0 0 65px rgba(57, 255, 122, 0.7))
+        drop-shadow(0 0 120px rgba(57, 255, 122, 0.35));
+}
+
+/* Línea divisora animada */
+.hero-divisor {
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--verde-yoda), transparent);
+    animation: expandirLinea 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s forwards;
+    opacity: 0.6;
+}
+
+@keyframes expandirLinea {
+    to { width: clamp(200px, 55vw, 600px); }
+}
+
+.hero-tagline {
+    font-family: var(--fuente-nav);
+    font-size: clamp(0.55rem, 1.4vw, 0.78rem);
+    letter-spacing: clamp(2px, 0.5vw, 6px);
+    color: #64748b;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-14px); }
+}
+
+@keyframes parpadeoSutil {
+    0%, 100% { opacity: 0.75; }
+    50%       { opacity: 0.35; }
+}
+
+/* 2. Sección Sobre Nosotros */
+.seccion-descripcion {
+    scroll-margin-top: 0;
+}
+
+.contenedor-sobre-nosotros {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1050px;
+    width: 100%;
+    background: linear-gradient(135deg, rgba(20, 35, 48, 0.75) 0%, rgba(9, 17, 26, 0.9) 100%);
+    border: 1px solid var(--verde-fuerza);
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(57, 255, 122, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.contenedor-sobre-nosotros::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--verde-yoda);
+    box-shadow: 0 0 12px var(--verde-yoda);
+}
+
+.sobre-nosotros-imagen-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+}
+
+.sobre-nosotros-img {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 15px rgba(57, 255, 122, 0.45));
+    animation: flotarSuave 5s ease-in-out infinite;
+}
+
+.sobre-nosotros-glow {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(57, 255, 122, 0.25) 0%, rgba(33, 67, 88, 0) 70%);
+    border-radius: 50%;
+    animation: pulsarGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes flotarSuave {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes pulsarGlow {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.15); opacity: 1; }
+}
+
+.sobre-nosotros-contenido {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.subtitulo-seccion-landing {
+    font-family: var(--fuente-especial);
+    font-size: 0.85rem;
+    color: var(--verde-yoda);
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+}
+
+.titulo-sobre-nosotros {
+    font-family: var(--fuente-especial);
+    color: var(--verde-yoda);
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px rgba(57, 255, 122, 0.3);
+}
+
+.sobre-nosotros-contenido p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--texto-claro);
+    font-family: var(--fuente-texto);
+}
+
+/* 3. Sección Staff: Pantalla completa centrada */
+.main-integrantes {
+    scroll-margin-top: 0;
+    min-height: 100vh;
+}
+
+.contenedor-staff {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1250px;
+}
+
+/* SISTEMA DE REVELADO SUAVE POR SCROLL (Fade-in lento y cinematográfico) */
+.revelable {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+    transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.revelable.visible-scroll {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.logo-gigante.revelable {
+    transform: scale(0.92);
+    transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.logo-gigante.revelable.visible-scroll {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.titulo-staff {
+    font-family: var(--fuente-especial);
+    font-size: 2.6rem;
+    color: var(--verde-yoda);
+    margin-bottom: 1.8rem;
+    letter-spacing: 4px;
+    text-align: center;
+    text-shadow:
+        0 0 20px rgba(57, 255, 122, 0.8),
+        0 0 60px rgba(57, 255, 122, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.staff-encabezado {
+    text-align: center;
+    margin-bottom: 0.2rem;
+}
+
+.staff-encabezado .titulo-staff {
+    margin-bottom: 0.65rem;
+}
+
+.staff-descripcion {
+    max-width: 560px;
+    margin: 0 auto;
+    color: #a8bac9;
+    font-size: 0.98rem;
+    line-height: 1.55;
+}
+
+/* =====================================================
+   CARRUSEL INFINITO DE STAFF
+   ===================================================== */
+
+/* Viewport: recorta el desbordamiento horizontal */
+.carousel-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Pausa la animación del track al hacer hover en el viewport */
+    cursor: grab;
+}
+
+.carousel-viewport:active {
+    cursor: grabbing;
+}
+
+/* Pausa el carrusel al hover */
+.carousel-viewport:hover .grilla-integrantes {
+    animation-play-state: paused;
+}
+
+/* Gradiente de fade lateral izquierdo */
+.carousel-fade-left,
+.carousel-fade-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.carousel-fade-left {
+    left: 0;
+    background: linear-gradient(90deg, var(--bg-espacio) 0%, transparent 100%);
+}
+
+.carousel-fade-right {
+    right: 0;
+    background: linear-gradient(270deg, var(--bg-espacio) 0%, transparent 100%);
+}
+
+/* Track del carrusel: flex horizontal */
+.grilla-integrantes {
+    display: flex;
+    gap: 1.8rem;
+    width: max-content;
+    padding: 1.5rem 0.5rem 2rem;
+    /* JS actualizará el transform para el scroll */
+    transform: translateX(0);
+}
+
+/* =====================================================
+   TARJETAS STAR WARS - DATAPAD IMPERIAL V2
+   ===================================================== */
+.tarjeta-resumen {
+    position: relative;
+    background: 
+        linear-gradient(135deg, rgba(4, 10, 18, 0.97) 0%, rgba(10, 22, 35, 0.93) 50%, rgba(4, 10, 18, 0.97) 100%);
+    border: 1px solid rgba(29, 185, 84, 0.5);
+    padding: 0;
+    backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+    /* Tamaño fijo en el carrusel */
+    width: 340px;
+    flex-shrink: 0;
+    /* Esquinas cortadas tipo datapad imperial */
+    clip-path: polygon(
+        0 0,
+        calc(100% - 18px) 0,
+        100% 18px,
+        100% 100%,
+        18px 100%,
+        0 calc(100% - 18px)
+    );
+    box-shadow: 
+        0 0 0 1px rgba(29, 185, 84, 0.2),
+        0 12px 40px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(57, 255, 122, 0.05),
+        inset 0 0 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease,
+                opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Animación de entrada: las cards escalan desde pequeñas */
+    opacity: 0;
+    transform: translateY(30px) scale(0.92);
+}
+
+/* Activada por JS cuando el bloque entra al viewport */
+.tarjeta-resumen.card-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Línea de energía superior animada */
+.tarjeta-resumen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        var(--card-color, var(--verde-yoda)) 30%,
+        rgba(255,255,255,0.9) 50%,
+        var(--card-color, var(--verde-yoda)) 70%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: energyFlow 3s linear infinite;
+    opacity: 0.8;
+    z-index: 5;
+}
+
+/* Decorador de esquina inferior-izquierda */
+.tarjeta-resumen::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--card-color, var(--verde-yoda));
+    opacity: 0.5;
+    z-index: 5;
+    transition: width 0.4s ease, opacity 0.4s ease;
+}
+
+.tarjeta-resumen:hover::after {
+    width: 80px;
+    opacity: 0.9;
+}
+
+@keyframes energyFlow {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Efecto escalonado (stagger) para aparición inicial */
+.grilla-integrantes .tarjeta-resumen:nth-child(1) { transition-delay: 0.05s; }
+.grilla-integrantes .tarjeta-resumen:nth-child(2) { transition-delay: 0.15s; }
+.grilla-integrantes .tarjeta-resumen:nth-child(3) { transition-delay: 0.25s; }
+.grilla-integrantes .tarjeta-resumen:nth-child(4) { transition-delay: 0.35s; }
+.grilla-integrantes .tarjeta-resumen:nth-child(5) { transition-delay: 0.45s; }
+
+/* Líneas de escaneo holográficas */
+.card-scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(57, 255, 122, 0.015) 3px,
+        rgba(57, 255, 122, 0.015) 4px
+    );
+    pointer-events: none;
+    opacity: 1;
+    z-index: 1;
+    animation: scanMove 8s linear infinite;
+}
+
+@keyframes scanMove {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 80px; }
+}
+
+@keyframes palpitar {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--card-color, var(--verde-yoda)); }
+    50%       { opacity: 0.4; box-shadow: 0 0 2px var(--card-color, var(--verde-yoda)); }
+}
+
+/* =====================================================
+   ESTRUCTURA INTERNA DE LA TARJETA
+   ===================================================== */
+
+/* Encabezado táctico de tarjeta */
+.card-badge-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(29, 185, 84, 0.25);
+    z-index: 3;
+    position: relative;
+}
+
+.card-id-code {
+    font-family: var(--fuente-nav);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--card-color, var(--verde-yoda));
+    opacity: 0.9;
+    text-shadow: 0 0 8px currentColor;
+}
+
+.card-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--card-color, var(--verde-yoda));
+    box-shadow: 0 0 8px var(--card-color, var(--verde-yoda));
+    animation: palpitar 2s infinite ease-in-out;
+}
+
+/* Cuerpo principal de la tarjeta (layout horizontal) */
+.card-cuerpo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+    z-index: 2;
+    position: relative;
+    flex: 1;
+}
+
+/* Marco del Avatar con aura de lightsaber */
+.avatar-marco {
+    position: relative;
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Hexágono decorativo alrededor del avatar */
+.avatar-marco::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px solid var(--card-color, var(--verde-yoda));
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    opacity: 0.4;
+    transition: opacity 0.4s ease, inset 0.4s ease;
+    animation: rotarAura 15s linear infinite;
+}
+
+.tarjeta-resumen:hover .avatar-marco::before {
+    opacity: 0.85;
+    inset: -10px;
+}
+
+.avatar-index {
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--card-color, rgba(57, 255, 122, 0.5));
+    background-color: var(--bg-espacio);
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s ease;
+    filter: saturate(0.85) brightness(0.9);
+}
+
+.tarjeta-resumen:hover .avatar-index {
+    filter: saturate(1.1) brightness(1.05);
+    box-shadow: 0 0 20px var(--card-color, rgba(57, 255, 122, 0.6));
+    border-color: var(--card-color, var(--verde-yoda));
+}
+
+.avatar-aura {
+    display: none; /* Reemplazado por ::before en .avatar-marco */
+}
+
+@keyframes rotarAura {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Contenido de texto de la tarjeta */
+.card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+    z-index: 2;
+    width: 100%;
+}
+
+/* Tipografía de la Card */
+.tarjeta-resumen h2 {
+    font-family: var(--fuente-especial);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--texto-claro);
+    margin-bottom: 0.3rem;
+    letter-spacing: 2px;
+    transition: color 0.3s, text-shadow 0.3s;
+    z-index: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.tarjeta-resumen:hover h2 {
+    color: var(--card-color, var(--verde-yoda));
+    text-shadow: 0 0 10px var(--card-color, rgba(57, 255, 122, 0.6));
+}
+
+.tarjeta-resumen .rol-texto {
+    font-family: var(--fuente-roles);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #94a3b8;
+    margin-bottom: 1.2rem;
+    display: block;
+    z-index: 2;
+}
+
+/* Telemetría galáctica / datos Star Wars */
+.card-telemetria {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(9, 13, 20, 0.8), rgba(5, 10, 18, 0.9));
+    border: 1px solid rgba(29, 185, 84, 0.2);
+    border-top: 2px solid var(--card-color, var(--verde-fuerza));
+    border-left: none;
+    border-radius: 0 0 4px 4px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    text-align: center;
+    font-family: var(--fuente-nav);
+    font-size: 0.82rem;
+    letter-spacing: 0.8px;
+    z-index: 2;
+    transition: border-color 0.4s ease;
+}
+
+.telemetria-item {
+    color: #8899aa;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.telemetria-item span:first-child {
+    color: var(--card-color, var(--verde-fuerza));
+    font-weight: bold;
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+
+.telemetria-item span:last-child {
+    color: #b8c9d8;
+}
+
+/* =====================================================
+   BOTONES DE LA TARJETA
+   ===================================================== */
+.card-botones {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    z-index: 3;
+    position: relative;
+    border-top: 1px solid rgba(29, 185, 84, 0.2);
+}
+
+.btn-perfil {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex: 1;
+    background: rgba(4, 10, 18, 0.6);
+    color: var(--card-color, var(--verde-yoda));
+    border: none;
+    border-right: 1px solid rgba(29, 185, 84, 0.2);
+    padding: 1rem 0.8rem;
+    text-decoration: none;
+    font-family: var(--fuente-nav);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.btn-perfil:last-child {
+    border-right: none;
+}
+
+.btn-perfil::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--card-color, var(--verde-yoda));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.btn-perfil:hover::before {
+    opacity: 0.15;
+}
+
+.btn-perfil:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px var(--card-color, var(--verde-yoda));
+    letter-spacing: 1.5px;
+}
+
+.btn-portfolio {
+    color: #7a9ab5;
+}
+
+.btn-portfolio:hover {
+    color: #ffffff;
+}
+
+.btn-flecha {
+    font-size: 0.6rem;
+    transition: transform 0.25s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-texto {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-perfil:hover .btn-flecha {
+    transform: translateX(4px);
+}
+
+.btn-perfil:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -4px;
+}
+
+/* =====================================================
+   COLORES DE FACCIÓN POR CSS CUSTOM PROPERTIES
+   Aplicado directamente en el HTML via style="--card-color: ..."
+   ===================================================== */
+
+/* Hover genérico: glow perimetral con el color de facción */
+.tarjeta-resumen:hover {
+    border-color: var(--card-color, var(--verde-yoda));
+    box-shadow: 
+        0 0 0 1px var(--card-color, var(--verde-yoda)),
+        0 0 25px color-mix(in srgb, var(--card-color, var(--verde-yoda)) 40%, transparent),
+        0 20px 50px rgba(0, 0, 0, 0.8),
+        inset 0 0 30px color-mix(in srgb, var(--card-color, var(--verde-yoda)) 8%, transparent);
+    transform: translateY(-5px) scale(1.01);
+}
+
+/* FOOTER */
+.footer-sitio {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: rgba(9, 13, 20, 0.9);
+    border-top: 1px solid var(--verde-fuerza);
+    color: #a0aec0;
+    font-size: 0.9rem;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/*  DISEÑO ADAPTATIVO */
+@media (max-width: 900px) {
+    .contenedor-sobre-nosotros {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+    }
+    .sobre-nosotros-contenido {
+        text-align: center;
+    }
+    .sobre-nosotros-imagen-wrapper {
+        width: 140px;
+        height: 140px;
+    }
+    .sobre-nosotros-img {
+        width: 110px;
+    }
+}
+
+@media (max-width: 900px) {
+    .header-fijo { padding: 0.75rem 1.25rem; }
+    .menu-toggle { display: flex; }
+    .navegacion-principal { position: absolute; top: 100%; left: 0; width: 100%; background-color: rgba(9, 13, 20, 0.98); flex-direction: column; gap: 0; clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: clip-path 0.4s ease; border-bottom: 1px solid var(--verde-fuerza); }
+    .navegacion-principal.nav-abierto { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    .nav-link { font-size: 1rem; padding: 1.2rem; width: 100%; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0; }
+    .nav-link:last-child { border-bottom: none; }
+}
+
+@media (max-width: 400px) {
+    .header-fijo {
+        padding: 0.6rem 0.8rem;
+    }
+    .logo-nav-unico {
+        height: 28px;
+    }
+    .navegacion-principal {
+        gap: 0.35rem;
+    }
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.45rem;
+    }
+}
+
+/* Dispositivos móviles grandes */
+@media (min-width: 400px) {
+    .contenedor-index { padding: 0.5rem; }
+}
+
+@media (max-width: 900px) {
+    .seccion-completa {
+        min-height: 100vh;
+        height: auto;
+        padding: 5rem 1rem 3rem 1rem;
+    }
+}
+
+/* Carrusel: en tablets aplica layout vertical dentro de la card */
+@media (min-width: 900px) {
+    /* Las cards ya tienen width fijo en el carrusel, solo ajustamos internos */
+    .card-cuerpo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+    z-index: 2;
+    position: relative;
+    flex: 1;
+}
+    .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+    z-index: 2;
+    width: 100%;
+}
+    .card-telemetria {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(9, 13, 20, 0.8), rgba(5, 10, 18, 0.9));
+    border: 1px solid rgba(29, 185, 84, 0.2);
+    border-top: 2px solid var(--card-color, var(--verde-fuerza));
+    border-left: none;
+    border-radius: 0 0 4px 4px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    text-align: center;
+    font-family: var(--fuente-nav);
+    font-size: 0.82rem;
+    letter-spacing: 0.8px;
+    z-index: 2;
+    transition: border-color 0.4s ease;
+}
+}
+
+/* Desktop: header y cards más anchas */
+@media (min-width: 1200px) {
+    .header-fijo { padding: 1rem 5rem; }
+    .tarjeta-resumen { width: 660px; }
+    .card-cuerpo { flex-direction: row; text-align: left; padding: 2.5rem 2rem; gap: 2.5rem; }
+    .card-info { align-items: flex-start; text-align: left; }
+    .card-telemetria {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(9, 13, 20, 0.8), rgba(5, 10, 18, 0.9));
+    border: 1px solid rgba(29, 185, 84, 0.2);
+    border-top: 2px solid var(--card-color, var(--verde-fuerza));
+    border-left: none;
+    border-radius: 0 0 4px 4px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    text-align: center;
+    font-family: var(--fuente-nav);
+    font-size: 0.82rem;
+    letter-spacing: 0.8px;
+    z-index: 2;
+    transition: border-color 0.4s ease;
+}
+}
+
+
+
+
+
+
+
+/* =====================================================
+   MINI CARDS (CONTROLES DE CARRUSEL)
+   ===================================================== */
+.mini-cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    z-index: 10;
+}
+
+.mini-card {
+    background: linear-gradient(135deg, rgba(4, 10, 18, 0.9) 0%, rgba(10, 22, 35, 0.9) 100%);
+    border: 1px solid rgba(29, 185, 84, 0.5);
+    color: var(--verde-yoda);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: var(--fuente-nav);
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(57, 255, 122, 0.05);
+}
+
+.mini-card:hover {
+    background: rgba(29, 185, 84, 0.15);
+    border-color: var(--verde-yoda);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(57, 255, 122, 0.3), inset 0 0 15px rgba(57, 255, 122, 0.2);
 }

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Itziar - Yoda Labs</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500&family=Space+Grotesk:wght@500;700&family=Syne:wght@600;700&family=Zen+Dots&display=swap" rel="stylesheet">
+    <!-- Hojas de estilos compartidas -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/perfiles.css">
+
+    <!-- Estilos personalizado -->
+    <style>
+        #tarjeta-perfil {
+            --verde-yoda: #b266ff;   
+            --verde-fuerza: #7514d5; 
+        }
+
+        /* Personalización Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090D14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7514d5;
+            border-radius: 6px;
+            border: 3px solid #090D14;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b266ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animación de estrellas -->
+    <canvas id="espacio-canvas"></canvas>
+    <!-- Encabezado -->
+    <header class="header-perfil">
+        <a href="index.html" class="logo-contenedor">
+            <img src="img/logo4.png" alt="Logo Yoda Labs" class="logo-nav-unico">
+        </a>
+        <nav class="navegacion-principal">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="index.html#texto-desc" class="nav-link">Sobre Nosotros</a>
+            <a href="index.html#seccion-integrantes" class="nav-link">Staff</a>
+            <a href="bitacora.html" class="nav-link">Bitácora</a>
+            <a href="https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git" target="_blank" class="nav-link icon-link" title="Repositorio en GitHub">
+                <img src="img/github-blanco.png" alt="GitHub Yoda Labs" class="icono-github-nav">
+            </a>
+            </nav>
+    </header>
+
+    <main class="contenedor-principal">
+        <!-- Tarjeta con efecto Flip -->
+        <section class="tarjeta-flip" id="tarjeta-perfil">
+            <div class="tarjeta-inner">
+                
+                <!-- LADO FRONTAL -->
+                <div class="tarjeta-frente">
+                    <div class="columna-izq">
+                        <img src="img/yoda1.jpg" alt="Avatar Yoda" class="img-perfil">
+                        <p class="click-hint">¡Más sobre mí!</p>
+                    </div>
+                    <div class="columna-der">
+                        <h1 class="nombre-perfil">Itziar Urriola</h1>
+                        <p class="datos-personales">34 años | Buenos Aires</p>
+                        
+                        <div class="tecnologias">
+                            <img src="img/icono-html5.png" alt="HTML5" class="icono-tech">
+                            <img src="img/icono-css3.png" alt="CSS3" class="icono-tech">
+                            <img src="img/icono-js.png" alt="JavaScript" class="icono-tech">
+                            <img src="img/icono-python.png" alt="Python" class="icono-tech">
+                            <img src="img/icono-csharp.png" alt="C#" class="icono-tech">
+                            <img src="img/github-blanco.png" alt="GitHub" class="icono-tech">
+                        </div>
+
+                        <div class="cualidades">
+                            <h3>Cualidades y Habilidades</h3>
+                            <ul>
+                                <li>Mentalidad analítica</li>
+                                <li>Resolución de problemas</li>
+                                <li>Trabajo en equipo</li>
+                                <li>Atención al detalle</li>
+                            </ul>
+                        </div>
+
+                        <a href="https://pfo-1-portfolio-itziar-urriola.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-portfolio-perfil">
+                            <span>Ver Portfolio</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- LADO TRASERO -->
+                <div class="tarjeta-dorso">
+                    <div class="columna-izq">
+                        <img src="img/avatar-itziar.jpg" alt="Avatar Itziar" class="img-perfil">
+                    </div>
+                    <div class="columna-der">
+                        <h1 class="nombre-perfil">Itziar Urriola</h1>
+                        <p class="datos-personales">34 años | Buenos Aires</p>
+                        
+                        <div class="favoritos">
+                            <h3>Películas Favoritas</h3>
+                            <div class="galeria-peliculas">
+                                <a href="https://www.youtube.com/watch?v=5DQAZtFHLEA" target="_blank" class="peli-item">
+                                    <img src="img/about-time.jpg" alt="About Time" title="Una cuestion de tiempo">
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=EZngbEj3W1Y" target="_blank" class="peli-item">
+                                    <img src="img/les-miserables.jpg" alt="Les Miserables" title="Los Miserables">
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=Ov0PdD5c7m0" target="_blank" class="peli-item">
+                                    <img src="img/pride-prejudice.jpg" alt="Pride & Prejudice" title="Orgullo y prejuicio">
+                                </a>
+                            </div>
+
+                            <h3>Discos Favoritos</h3>
+                            <div class="galeria-discos">
+                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_n2z-As3TqFt61RnhDrmJDZCSpk3muFdXA&si=gxlKW6Oe5SY60hOa" target="_blank" class="disco-item">
+                                    <img src="img/arirang-bts.jpg" alt="Portada Arirang BTS" title="Arirang - BTS">
+                                </a>
+                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_mDcGp6Foei5zEIv-cleoK4MpuK6MHGAns&si=L6znYJbnTVFN1t2O" target="_blank" class="disco-item">
+                                    <img src="img/rpwp-rm.jpg" alt="Portada Right Place Wrong Person RM" title="Right Place - RM">
+                                </a>
+                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_l-Rd8aIoTqerGzAYt2UBWCA9lmNY_slEw&si=_6rmxcVHQeYfDKjh" target="_blank" class="disco-item">
+                                    <img src="img/brand-new-eyes-paramore.jpg" alt="Portada Brand New Eyes Paramore" title="Brand New Eyes - Paramore">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <nav class="navegacion-tripulacion" aria-label="Navegación entre integrantes">
+            <a href="melisa.html" class="btn-tripulacion btn-tripulacion-anterior"><span aria-hidden="true">◄</span><span><small>ANTERIOR</small>Melisa</span></a>
+            <a href="index.html#seccion-integrantes" class="indicador-tripulacion" aria-label="Volver al staff">YL · 05 / 05</a>
+            <a href="leonel.html" class="btn-tripulacion btn-tripulacion-siguiente"><span><small>SIGUIENTE</small>Leonel</span><span aria-hidden="true">►</span></a>
+        </nav>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-sitio">
+        <p>Yoda Labs · TP1 · FrontEnd · IFTS N°29 · 2026</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/perfiles.js"></script>
+</body>
+</html>
