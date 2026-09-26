@@ -45,6 +45,66 @@
     padding-bottom: 4rem;
 }
 
+/* Navegación circular entre holocrones del staff */
+.navegacion-tripulacion {
+    width: min(800px, calc(100% - 2rem));
+    margin: 1.4rem auto 0;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 0.75rem;
+    font-family: var(--fuente-nav);
+}
+
+.btn-tripulacion,
+.indicador-tripulacion {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    color: var(--verde-yoda);
+    background: rgba(6, 15, 24, 0.76);
+    border: 1px solid color-mix(in srgb, var(--verde-yoda) 55%, transparent);
+    text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-tripulacion > span:not([aria-hidden]) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.btn-tripulacion small {
+    color: #92a4b3;
+    font-size: 0.58rem;
+    letter-spacing: 1.3px;
+}
+
+.btn-tripulacion-siguiente {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.indicador-tripulacion {
+    justify-content: center;
+    color: #bdcad4;
+    font-size: 0.68rem;
+    letter-spacing: 1.4px;
+}
+
+.btn-tripulacion:hover,
+.btn-tripulacion:focus-visible,
+.indicador-tripulacion:hover,
+.indicador-tripulacion:focus-visible {
+    outline: none;
+    background: color-mix(in srgb, var(--verde-yoda) 15%, rgba(6, 15, 24, 0.88));
+    box-shadow: 0 0 18px color-mix(in srgb, var(--verde-yoda) 42%, transparent);
+    transform: translateY(-3px);
+}
+
 /* FOOTER */
 .footer-sitio {
     text-align: center;
@@ -58,7 +118,14 @@
 }
 
 /* LÓGICA DE LA TARJETA FLIP 3D */
+@property --angulo-glow {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
 .tarjeta-flip {
+    position: relative;
     background-color: transparent;
     width: 100%;
     max-width: 800px;
@@ -66,6 +133,24 @@
     perspective: 1000px;
     margin: 0 auto;
     cursor: pointer;
+    isolation: isolate;
+}
+
+/* Aura exterior: núcleo de sable y difusión de energía sobre el fondo espacial. */
+.tarjeta-flip::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    z-index: -1;
+    border: 2px solid var(--verde-yoda);
+    border-radius: 20px;
+    opacity: 0.95;
+    box-shadow:
+        0 0 7px #ffffff,
+        0 0 14px var(--verde-yoda),
+        0 0 32px color-mix(in srgb, var(--verde-yoda) 92%, transparent),
+        0 0 62px color-mix(in srgb, var(--verde-yoda) 55%, transparent);
+    animation: aura-sable 1.8s ease-in-out infinite alternate;
 }
 
 .tarjeta-inner {
@@ -87,16 +172,123 @@
     height: 100%;
     backface-visibility: hidden;
     display: flex;
-    background-color: rgba(33, 67, 88, 0.85);
-    border: 2px solid var(--verde-yoda);
+    background:
+        linear-gradient(135deg, rgba(18, 39, 55, 0.97), rgba(7, 16, 26, 0.96)),
+        rgba(33, 67, 88, 0.85);
+    border: 1px solid color-mix(in srgb, var(--verde-yoda) 65%, #b7eaff);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.62),
+        0 0 8px #ffffff,
+        0 0 21px color-mix(in srgb, var(--verde-yoda) 68%, transparent),
+        inset 0 0 28px color-mix(in srgb, var(--verde-yoda) 12%, transparent);
+    isolation: isolate;
+    animation: halo-holocron 2.8s ease-in-out infinite alternate;
+}
+
+/* Trama holográfica compartida con las cards de la portada. */
+.tarjeta-frente::before,
+.tarjeta-dorso::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, var(--verde-yoda) 0 42px, transparent 42px) top left / 86px 2px no-repeat,
+        linear-gradient(180deg, var(--verde-yoda) 0 42px, transparent 42px) top right / 2px 86px no-repeat,
+        repeating-linear-gradient(0deg, transparent 0 4px, color-mix(in srgb, var(--verde-yoda) 4%, transparent) 4px 5px),
+        radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--verde-yoda) 12%, transparent), transparent 36%);
+    opacity: 0.9;
+}
+
+.tarjeta-frente > *,
+.tarjeta-dorso > * {
+    position: relative;
+    z-index: 1;
 }
 
 .tarjeta-dorso {
     transform: rotateY(180deg);
-    background-color: rgba(20, 40, 55, 0.9);
+    background:
+        linear-gradient(135deg, rgba(13, 30, 43, 0.98), rgba(5, 13, 22, 0.97)),
+        rgba(20, 40, 55, 0.9);
+}
+
+/* Segmento luminoso que orbita el marco del holocrón. */
+.tarjeta-frente::after,
+.tarjeta-dorso::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    padding: 3px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: conic-gradient(
+        from var(--angulo-glow),
+        transparent 0deg 195deg,
+        color-mix(in srgb, var(--verde-yoda) 45%, transparent) 218deg,
+        var(--verde-yoda) 242deg,
+        #ffffff 259deg,
+        #ffffff 274deg,
+        var(--verde-yoda) 291deg,
+        color-mix(in srgb, var(--verde-yoda) 45%, transparent) 315deg,
+        transparent 338deg 360deg
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: recorrido-neon 4.2s linear infinite;
+}
+
+@keyframes recorrido-neon {
+    to { --angulo-glow: 360deg; }
+}
+
+@keyframes aura-sable {
+    from {
+        opacity: 0.75;
+        box-shadow:
+            0 0 5px #ffffff,
+            0 0 12px var(--verde-yoda),
+            0 0 28px color-mix(in srgb, var(--verde-yoda) 80%, transparent),
+            0 0 52px color-mix(in srgb, var(--verde-yoda) 45%, transparent);
+    }
+    to {
+        opacity: 1;
+        box-shadow:
+            0 0 10px #ffffff,
+            0 0 22px var(--verde-yoda),
+            0 0 45px color-mix(in srgb, var(--verde-yoda) 100%, transparent),
+            0 0 90px color-mix(in srgb, var(--verde-yoda) 68%, transparent);
+    }
+}
+
+@keyframes halo-holocron {
+    from {
+        box-shadow:
+            0 14px 34px rgba(0, 0, 0, 0.62),
+            0 0 14px color-mix(in srgb, var(--verde-yoda) 28%, transparent),
+            inset 0 0 24px color-mix(in srgb, var(--verde-yoda) 7%, transparent);
+    }
+    to {
+        box-shadow:
+            0 16px 38px rgba(0, 0, 0, 0.68),
+            0 0 27px color-mix(in srgb, var(--verde-yoda) 55%, transparent),
+            inset 0 0 30px color-mix(in srgb, var(--verde-yoda) 12%, transparent);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta-frente,
+    .tarjeta-dorso,
+    .tarjeta-flip::before,
+    .tarjeta-frente::after,
+    .tarjeta-dorso::after {
+        animation: none;
+    }
 }
 
 /* DISTRIBUCIÓN INTERNA */
@@ -105,7 +297,8 @@
     background-color: rgba(9, 13, 20, 0.5);
     display: flex;
     flex-direction: column;
-    border-right: 1px solid var(--verde-fuerza);
+    border-right: 2px solid color-mix(in srgb, var(--verde-yoda) 62%, transparent);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.28);
 }
 
 .img-perfil {
@@ -113,6 +306,8 @@
     height: 300px;
     object-fit: cover;
     margin-bottom: 1.5rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--verde-yoda) 55%, transparent);
+    filter: saturate(0.92) contrast(1.04);
 }
 
 .click-hint {
@@ -136,6 +331,8 @@
     font-size: 2rem;
     color: var(--texto-claro);
     margin-bottom: 0.5rem;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 15px color-mix(in srgb, var(--verde-yoda) 52%, transparent);
 }
 
 .datos-personales {
@@ -155,6 +352,10 @@
 .icono-tech {
     width: 35px;
     height: 35px;
+    padding: 5px;
+    background: rgba(3, 9, 15, 0.72);
+    border: 1px solid color-mix(in srgb, var(--verde-yoda) 34%, transparent);
+    border-radius: 6px;
     transition: transform 0.3s;
 }
 
@@ -164,6 +365,10 @@
 
 .cualidades {
     font-family: var(--fuente-roles);
+    padding: 0.8rem 1rem;
+    background: rgba(3, 9, 15, 0.48);
+    border-left: 2px solid var(--verde-yoda);
+    border-radius: 0 8px 8px 0;
 }
 
 .cualidades ul {
@@ -185,6 +390,33 @@
     left: 0;
     font-size: 0.7rem;
     top: 3px;
+}
+
+/* Botón de Portfolio en la Ficha Individual */
+.btn-portfolio-perfil {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(9, 13, 20, 0.75);
+    border: 1px solid var(--verde-yoda);
+    color: var(--verde-yoda);
+    text-decoration: none;
+    font-family: var(--fuente-nav);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+    width: fit-content;
+}
+
+.btn-portfolio-perfil:hover {
+    background: var(--verde-yoda);
+    color: var(--bg-espacio);
+    box-shadow: 0 0 15px rgba(57, 255, 122, 0.5);
+    transform: translateY(-2px);
 }
 
 /* Galería de Películas */
@@ -267,9 +499,54 @@ h3 {
 
 /* Responsivo para móviles */
 @media (max-width: 900px) {
-    .header-perfil { padding: 1rem; }
+    .header-perfil {
+        padding: 0.8rem 1.2rem;
+    }
+    .header-perfil .navegacion-principal {
+        gap: 0.5rem;
+    }
+    .header-perfil .nav-link {
+        font-size: 0.85rem;
+        padding: 0.35rem 0.6rem;
+    }
     .tarjeta-flip { height: auto; min-height: 750px; }
     .tarjeta-frente, .tarjeta-dorso { flex-direction: column; position: relative; height: auto; backface-visibility: visible; display: none; }
     .tarjeta-flip .tarjeta-frente { display: flex; }
     .columna-izq, .columna-der { width: 100%; border-right: none; }
+
+    .navegacion-tripulacion {
+        width: min(680px, calc(100% - 2rem));
+    }
+}
+
+@media (max-width: 480px) {
+    .header-perfil {
+        padding: 0.6rem 0.8rem;
+    }
+    .header-perfil .navegacion-principal {
+        gap: 0.3rem;
+    }
+    .header-perfil .nav-link {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.45rem;
+    }
+
+    .contenedor-principal {
+        padding-top: 6.8rem;
+        padding-bottom: 2.5rem;
+    }
+    .navegacion-tripulacion {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.55rem;
+    }
+    .indicador-tripulacion {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        min-height: 40px;
+    }
+    .btn-tripulacion {
+        min-height: 54px;
+        padding: 0.55rem 0.65rem;
+        font-size: 0.78rem;
+    }
 }

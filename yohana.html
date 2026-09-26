@@ -37,6 +37,9 @@
 <body>
     <!-- Animación de estrellas -->
     <canvas id="espacio-canvas"></canvas>
+    <audio id="audio-tema" loop autoplay preload="auto">
+        <source src="song/theme.mp3" type="audio/mpeg">
+    </audio>
 
 <!-- Encabezado -->
     <header class="header-perfil">
@@ -45,10 +48,15 @@
         </a>
         <nav class="navegacion-principal">
             <a href="index.html" class="nav-link">Inicio</a>
+            <a href="index.html#texto-desc" class="nav-link">Sobre Nosotros</a>
+            <a href="index.html#seccion-integrantes" class="nav-link">Staff</a>
             <a href="bitacora.html" class="nav-link">Bitácora</a>
-            <a href="https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git" target="_blank" class="nav-link icon-link">
+            <a href="https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git" target="_blank" class="nav-link icon-link" title="Repositorio en GitHub">
                 <img src="img/github-blanco.png" alt="GitHub Yoda Labs" class="icono-github-nav">
             </a>
+            <button class="nav-link btn-sonido" id="btn-sonido" title="Activar sonido" aria-label="Activar o silenciar música">
+                <svg class="icono-sonido" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="onda-base" d="M11 5L6 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="currentColor" fill-opacity=".12"/><path class="onda onda-1" d="M15.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="onda onda-2" d="M18.5 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="icono-mute" d="M17 9l4 4m0-4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"/></svg>
+            </button>
         </nav>
     </header>
 
@@ -85,6 +93,11 @@
                                 <li>Atención al detalle</li>
                             </ul>
                         </div>
+
+                        <a href="https://yohaolivera.github.io/pfo-portfolio-yohana/" target="_blank" rel="noopener noreferrer" class="btn-portfolio-perfil">
+                            <span>Ver Portfolio</span>
+                            <span>↗</span>
+                        </a>
                     </div>
                 </div>
 
@@ -129,6 +142,12 @@
 
             </div>
         </section>
+
+        <nav class="navegacion-tripulacion" aria-label="Navegación entre integrantes">
+            <a href="maximiliano.html" class="btn-tripulacion btn-tripulacion-anterior"><span aria-hidden="true">◄</span><span><small>ANTERIOR</small>Maximiliano</span></a>
+            <a href="index.html#seccion-integrantes" class="indicador-tripulacion" aria-label="Volver al staff">YL · 03 / 05</a>
+            <a href="melisa.html" class="btn-tripulacion btn-tripulacion-siguiente"><span><small>SIGUIENTE</small>Melisa</span><span aria-hidden="true">►</span></a>
+        </nav>
     </main>
 
     <!-- Footer -->

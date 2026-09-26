@@ -1,67 +1,175 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bitácora | Grupo 29</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/main.js" defer></script>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container header-content">
-        <a class="brand" href="../index.html">Grupo 29</a>
-        <nav class="main-nav">
-          <a href="../index.html">Inicio</a
-          ><a class="active" href="bitacora.html">Bitácora</a
-          ><button class="theme-toggle" type="button" data-theme-toggle>
-            Modo oscuro
-          </button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora de Desarrollo - Yoda Labs</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500&family=Space+Grotesk:wght@500;700&family=Syne:wght@600;700&family=Zen+Dots&display=swap" rel="stylesheet">
+    <!-- Hojas de estilos -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/perfiles.css">
+    <link rel="stylesheet" href="css/bitacora.css">
+</head>
+<body>
+    <!-- Canvas de estrellas compartido -->
+    <canvas id="espacio-canvas"></canvas>
+    <audio id="audio-tema" loop autoplay preload="auto">
+        <source src="song/theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Encabezado de navegación -->
+    <header class="header-perfil">
+        <a href="index.html" class="logo-contenedor">
+            <img src="img/logo4.png" alt="Logo Yoda Labs" class="logo-nav-unico">
+        </a>
+        <nav class="navegacion-principal">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="index.html#texto-desc" class="nav-link">Sobre Nosotros</a>
+            <a href="index.html#seccion-integrantes" class="nav-link">Staff</a>
+            <a href="bitacora.html" class="nav-link activo">Bitácora</a>
+            <a href="https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git" target="_blank" class="nav-link icon-link" title="Repositorio en GitHub">
+                <img src="img/github-blanco.png" alt="GitHub Yoda Labs" class="icono-github-nav">
+            </a>
+            <button class="nav-link btn-sonido" id="btn-sonido" title="Activar sonido" aria-label="Activar o silenciar música">
+                <svg class="icono-sonido" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="onda-base" d="M11 5L6 9H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l5 4V5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="currentColor" fill-opacity=".12"/><path class="onda onda-1" d="M15.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="onda onda-2" d="M18.5 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="icono-mute" d="M17 9l4 4m0-4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"/></svg>
+            </button>
         </nav>
-      </div>
     </header>
-    <main class="container section">
-      <a class="back-link" href="../index.html">← Volver al inicio</a>
-      <p class="eyebrow">Proceso de trabajo</p>
-      <h1>Bitácora</h1>
-      <p class="lead">
-        Registro de decisiones, avances y dificultades del equipo.
-      </p>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Decisión o avance</th>
-              <th>Dificultades</th>
-              <th>Responsables</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>A completar</td>
-              <td>Definición de la estructura inicial.</td>
-              <td>A completar</td>
-              <td>Grupo 29</td>
-            </tr>
-            <tr>
-              <td>A completar</td>
-              <td>A completar</td>
-              <td>A completar</td>
-              <td>A completar</td>
-            </tr>
-            <tr>
-              <td>A completar</td>
-              <td>A completar</td>
-              <td>A completar</td>
-              <td>A completar</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+
+    <main class="contenedor-bitacora">
+        <!-- Navegación interna de retorno -->
+        <div class="barra-navegacion-interna">
+            <a href="index.html" class="btn-volver">← Volver al inicio</a>
+        </div>
+
+        <!-- Encabezado de la bitácora -->
+        <section class="bitacora-header">
+            <p class="subtitulo-seccion">Proceso de Trabajo · TP1</p>
+            <h1 class="titulo-bitacora">Bitácora de Desarrollo</h1>
+            <p class="descripcion-bitacora">
+                Registro cronológico de acuerdos, decisiones técnicas, dificultades superadas y coordinación del equipo Yoda Labs para el desarrollo del sitio colaborativo.
+            </p>
+        </section>
+
+        <!-- Métricas resumidas del proyecto -->
+        <section class="resumen-metas">
+            <article class="tarjeta-meta">
+                <div class="meta-numero">5</div>
+                <div class="meta-etiqueta">Integrantes activos</div>
+            </article>
+            <article class="tarjeta-meta">
+                <div class="meta-numero">100%</div>
+                <div class="meta-etiqueta">Diseño Responsive (400, 900, 1200px)</div>
+            </article>
+            <article class="tarjeta-meta">
+                <div class="meta-numero">2+</div>
+                <div class="meta-etiqueta">Interacciones JS dinámicas</div>
+            </article>
+            <article class="tarjeta-meta">
+                <div class="meta-numero">6</div>
+                <div class="meta-etiqueta">Páginas interconectadas</div>
+            </article>
+        </section>
+
+        <!-- Tabla principal de bitácora -->
+        <section class="tabla-bitacora-contenedor">
+            <table class="tabla-bitacora">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Fase & Avance</th>
+                        <th>Dificultades encontradas</th>
+                        <th>Resolución</th>
+                        <th>Responsables</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="celda-fecha">2026-09-21</td>
+                        <td class="celda-avance">
+                            <span class="badge-fase">Organización</span>
+                            <strong>Estructura base y repo compartido</strong>
+                            <p>Creación del repositorio en GitHub, acuerdo de pautas de trabajo, branch workflow y definición inicial de archivos y carpetas.</p>
+                        </td>
+                        <td>Disparidad de configuraciones locales y duplicación de carpetas iniciales.</td>
+                        <td>Se acordó la arquitectura oficial: archivos HTML en la raíz, carpetas <code>css/</code>, <code>js/</code> e <code>img/</code>.</td>
+                        <td class="celda-responsables">Leonel & Equipo</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-fecha">2026-09-22</td>
+                        <td class="celda-avance">
+                            <span class="badge-fase diseno">Identidad</span>
+                            <strong>Rediseño galáctico "Yoda Labs"</strong>
+                            <p>Evolución estética completa: canvas espacial interactivo en JavaScript, paleta espacial (#090D14, #58C98B, #214358) y tipografías temáticas.</p>
+                        </td>
+                        <td>Asegurar que el canvas de partículas no bloquee los eventos ni consuma excesiva CPU en dispositivos móviles.</td>
+                        <td>Uso de <code>requestAnimationFrame</code> con recálculo dinámico de dimensiones y <code>z-index: -1</code> fijo.</td>
+                        <td class="celda-responsables">Plecto & Leonel</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-fecha">2026-09-23</td>
+                        <td class="celda-avance">
+                            <span class="badge-fase codigo">Arquitectura</span>
+                            <strong>Limpieza de rutas y perfiles individuales</strong>
+                            <p>Eliminación de plantillas duplicadas en subcarpetas. Estandarización de <code>leonel.html</code>, <code>maximiliano.html</code>, <code>yohana.html</code>, <code>melisa.html</code> e <code>itziar.html</code> en la raíz.</p>
+                        </td>
+                        <td>Rutas relativas rotas en enlaces y recursos CSS/JS al mover archivos de <code>pages/</code> a la raíz.</td>
+                        <td>Refactorización integral de rutas relativas directas y saneamiento del historial de Git.</td>
+                        <td class="celda-responsables">Plecto & Itziar</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-fecha">2026-09-23</td>
+                        <td class="celda-avance">
+                            <span class="badge-fase multimedia">Contenido</span>
+                            <strong>Tarjetas Flip 3D y multimedia de integrantes</strong>
+                            <p>Implementación de tarjeta interactiva con efecto 3D flip al clic, galerías de películas con trailers de YouTube y discos favoritos con enlaces a música.</p>
+                        </td>
+                        <td>En pantallas chicas, la rotación 3D desbordaba o truncaba el texto de las dos caras de la tarjeta.</td>
+                        <td>Ajuste responsive mediante media query en 900px y 400px adaptando el flujo a vista vertical accesible.</td>
+                        <td class="celda-responsables">Itziar & Equipo</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-fecha">2026-09-25</td>
+                        <td class="celda-avance">
+                            <span class="badge-fase entrega">Consolidación</span>
+                            <strong>Integración de bitácora y validación integral</strong>
+                            <p>Implementación final de la bitácora con diseño unificado, verificación de navegación bidireccional en todas las páginas y preparación para entrega.</p>
+                        </td>
+                        <td>La bitácora original mantenía estilos genéricos antiguos que rompían la identidad visual del proyecto.</td>
+                        <td>Reescritura completa con <code>css/bitacora.css</code>, canvas espacial, navegación bidireccional y adaptación responsive estricta.</td>
+                        <td class="celda-responsables">Grupo Yoda Labs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Bloques metodológicos y colaborativos -->
+        <section class="seccion-metodologia">
+            <h2 class="subtitulo-bloque">Metodología y Criterios del Equipo</h2>
+            <div class="grilla-metodologia">
+                <article class="tarjeta-metodologia">
+                    <h3>Comunicación & Acuerdos</h3>
+                    <p>Coordinación asíncrona y reuniones de puesta en común para definir el estilo de diseño, selección de avatares, armado de fichas personales y distribución equitativa de tareas técnicas.</p>
+                </article>
+                <article class="tarjeta-metodologia">
+                    <h3>Control de Versiones</h3>
+                    <p>Uso de Git y GitHub como fuente única de verdad. Commits descriptivos que reflejan la evolución real del proyecto y participación activa de los integrantes.</p>
+                </article>
+                <article class="tarjeta-metodologia">
+                    <h3>Uso Responsable de IA</h3>
+                    <p>Asistencia técnica para sugerir estructuras semánticas y optimizar efectos CSS/JS. Todo el código generado fue revisado, probado, adaptado y validado con criterio propio del equipo.</p>
+                </article>
+            </div>
+        </section>
     </main>
-    <footer class="site-footer">
-      <div class="container"><p>Grupo 29 · Tecnicatura · TP1</p></div>
+
+    <!-- Footer unificado -->
+    <footer class="footer-sitio">
+        <p>Yoda Labs · TP1 · FrontEnd · IFTS N°29 · 2026</p>
     </footer>
-  </body>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
 </html>
