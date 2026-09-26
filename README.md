@@ -98,8 +98,17 @@ Genera más de 220 partículas estelares calculando su posición tridimensional 
 ### 2. Header Reactivo al Desplazamiento (`js/main.js`)
 Controla la aparición suave del texto de descripción con `IntersectionObserver` y monitorea el scroll vertical para acoplar inmediatamente el navbar fijo en la parte superior apenas el usuario inicia el desplazamiento hacia abajo (`scrollY > 40px`).
 
-### 3. Tarjeta Interactiva Flip 3D (`js/perfiles.js`)
-Agrega interactividad dinámica a la tarjeta personal del integrante. Mediante eventos de clic o teclado, conmuta la clase `.girada` para realizar una rotación de 180° sobre el eje Y con perspectiva 3D, permitiendo alternar de forma natural entre la vista de datos/habilidades y el dorso con películas y discos favoritos.
+### 3. Tarjeta Interactiva Flip 3D (js/perfiles.js)
+Agrega interactividad dinámica a la tarjeta personal del integrante. Mediante eventos de clic o teclado, conmuta la clase .girada para realizar una rotación de 180° sobre el eje Y con perspectiva 3D, permitiendo alternar de forma natural entre la vista de datos/habilidades y el dorso con películas y discos favoritos.
+
+### 4. Carrusel Infinito JS Nativo (js/main.js)
+Crea un slider continuo para las tarjetas del equipo mediante equestAnimationFrame. Evita la contaminación del DOM (no utiliza clones de nodos) y, matemáticamente, reubica la primera tarjeta al final cuando sale completamente del área visible, compensando la transformación del track para lograr un loop visualmente perfecto y con pausa inteligente al hacer hover.
+
+### 5. Navegación Móvil Hamburguesa & ScrollSpy (js/main.js)
+Implementa un menú desplegable responsivo (para <768px) que se oculta mediante clip-path para animaciones fluidas, y cuenta con cierre automático al hacer clic en enlaces internos. Adicionalmente, IntersectionObserver colorea de verde dinámicamente el enlace activo de la barra superior conforme el usuario escrolea las secciones.
+
+### 6. Sistema de Audio Espacial Interactivo (js/main.js)
+Integra el tema principal (	heme.mp3) respetando las políticas de navegadores: fuerza el un-mute y comienza la pista en bucle desde un tiempo específico (segundo 3), reaccionando a un botón de la barra de navegación que actualiza dinámicamente sus SVG para mostrar si el audio está activo o pausado.
 
 ---
 
@@ -126,3 +135,4 @@ Conforme a la consigna del trabajo práctico:
 
 - **Repositorio de GitHub:** [LeonelDiaz225/Front-Trabajo_Practico_Grupal_1](https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git)
 - **Despliegue en Vercel:** *En proceso de configuración y despliegue*
+

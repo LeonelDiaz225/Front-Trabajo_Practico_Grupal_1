@@ -519,7 +519,7 @@ h3 {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
     .header-perfil {
         padding: 0.6rem 0.8rem;
     }
@@ -550,3 +550,4 @@ h3 {
         font-size: 0.78rem;
     }
 }
+

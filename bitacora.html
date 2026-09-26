@@ -140,6 +140,17 @@
                         <td>Reescritura completa con <code>css/bitacora.css</code>, canvas espacial, navegación bidireccional y adaptación responsive estricta.</td>
                         <td class="celda-responsables">Grupo Yoda Labs</td>
                     </tr>
+                    <tr>
+                        <td class="celda-fecha">2026-09-25</td>
+                        <td class="celda-avance">
+                            <span class="badge-fase codigo">Refactorización</span>
+                            <strong>Audio, Carrusel JS Puro y Menú Móvil</strong>
+                            <p>Integración de audio loopeado (`theme.mp3`), reemplazo del carrusel estático por uno interactivo JS sin clonación de DOM, y unificación responsive de las cards a tamaño doble en desktop.</p>
+                        </td>
+                        <td>Políticas de autoplay en navegadores bloqueaban el audio; las cards se achataban en móvil; y el menú hamburguesa requería lógica stateful.</td>
+                        <td>Solución JS nativa (`requestAnimationFrame`) para rotar el carrusel; media queries en 400px, 900px y 1200px para redimensionar las cards; y botón de audio interactivo.</td>
+                        <td class="celda-responsables">Leonel & Equipo</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
