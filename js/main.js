@@ -323,18 +323,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mostrar el encabezado inmediatamente al scrollear hacia abajo
     const headerOculto = document.getElementById('header-oculto');
+    const seccionSobreNosotros = document.getElementById('texto-desc');
 
-    if (headerOculto) {
-        window.addEventListener('scroll', () => {
+    if (headerOculto && seccionSobreNosotros) {
+        const actualizarHeader = () => {
             const scrollActual = window.scrollY || window.pageYOffset || 0;
-            
-            // Aparece apenas el usuario scrollea más de 40px desde el tope
-            if (scrollActual > window.innerHeight - 40) {
+
+            // Posición real de la sección "Sobre Nosotros"
+            const rect = seccionSobreNosotros.getBoundingClientRect();
+            const offsetSeccion = rect.top + scrollActual;
+
+            // Se muestra 80px antes de que empiece la sección
+            const umbral = offsetSeccion - 80;
+
+            if (scrollActual >= umbral) {
                 headerOculto.classList.add('visible');
             } else {
                 headerOculto.classList.remove('visible');
             }
-        }, { passive: true });
+        };
+
+        window.addEventListener('scroll', actualizarHeader, { passive: true });
+        window.addEventListener('resize', actualizarHeader);
+
+        // Por si la página carga ya scrolleada
+        actualizarHeader();
     }
 
     // =====================================================

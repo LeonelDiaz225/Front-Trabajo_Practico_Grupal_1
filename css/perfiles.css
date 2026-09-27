@@ -1,17 +1,78 @@
 /* ENCABEZADO */
-.header-perfil {
+.header-perfil.header-fijo {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    background-color: rgba(9, 13, 20, 0.85); 
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    background-color: rgba(9, 13, 20, 0.85);
     backdrop-filter: blur(8px);
-    z-index: 1000;
     border-bottom: 1px solid var(--verde-fuerza);
+    padding: 1rem 3rem;
+}
+
+@media (max-width: 900px) {
+    .header-perfil .menu-toggle {
+        display: flex;
+    }
+
+    .header-perfil .navegacion-principal {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(9, 13, 20, 0.98);
+        flex-direction: column;
+        gap: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.4s ease;
+        border-bottom: 1px solid var(--verde-fuerza);
+    }
+
+    .header-perfil .navegacion-principal.nav-abierto {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .header-perfil .nav-link {
+        font-size: 1rem;
+        padding: 1.2rem;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 0;
+    }
+
+    .header-perfil .nav-link:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (min-width: 901px) {
+    .header-perfil .menu-toggle {
+        display: none;
+    }
+
+    .header-perfil .navegacion-principal {
+        position: relative;
+        flex-direction: row;
+        background-color: transparent;
+        border-bottom: none;
+        clip-path: none;
+    }
+}
+
+/* Ajustes finos para 400px */
+@media (max-width: 400px) {
+    .header-perfil.header-fijo {
+        padding: 0.6rem 0.8rem;
+    }
+    .header-perfil .nav-link {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+    }
+    .header-perfil .logo-nav-unico {
+        height: 28px;
+    }
 }
 
 .logo-contenedor {
@@ -238,6 +299,7 @@
         transparent 338deg 360deg
     );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     animation: recorrido-neon 4.2s linear infinite;
@@ -512,7 +574,7 @@ h3 {
     
     /* 1. Altura fija mayor necesaria para que el 3D funcione con el contenido apilado en vertical */
     .tarjeta-flip { 
-        height: 950px; /* Puedes subir o bajar este número si ves que te sobra o falta espacio abajo */
+        height: 800px; /* Puedes subir o bajar este número si ves que te sobra o falta espacio abajo */
         min-height: unset;
     }
     
