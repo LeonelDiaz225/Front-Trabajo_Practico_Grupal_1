@@ -1,9 +1,9 @@
 /*VARIABLES Y CONFIGURACIÓN BASE*/
 :root {
     --bg-espacio: #070C12;
-    --verde-yoda: #39FF7A;       /* Sable de luz Star Wars */
-    --verde-fuerza: #1DB954;     /* Verde sable medio */
-    --verde-sutil: #0F7A3A;      /* Verde oscuro para bordes sutiles */
+    --verde-yoda: #39FF7A;      
+    --verde-fuerza: #1DB954;     
+    --verde-sutil: #0F7A3A;    
     --azul-labs: #0D2233;
     --texto-claro: #E2E8F0;
     
@@ -23,12 +23,12 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE y Edge clásico */
+    scroll-snap-type: y proximity;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* Ocultar barra de scroll en navegadores basados en WebKit (Chrome, Safari, Edge) */
+/* Ocultar barra de scroll en navegadores basados en WebKit */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none;
@@ -52,9 +52,15 @@ body {
     overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    cursor: url('../img/sable-de-luz.png') 0 0, auto !important;
 }
 
-/*FONDO ESTELAR (Canvas con mezcla luminosa sobre la textura) */
+a, button, .btn-sonido, .menu-toggle, .mini-card, 
+.tarjeta-flip, .carousel-viewport, .carousel-viewport:active,
+.btn-perfil, .btn-tripulacion, .indicador-tripulacion {
+    cursor: url('../img/sable-de-luz.png') 0 0, pointer !important;
+}
+/*FONDO ESTELAR */
 #espacio-canvas {
     position: fixed;
     top: 0;
@@ -79,8 +85,6 @@ body {
     background-color: transparent;
     z-index: 1000;
     border-bottom: 1px solid transparent;
-
-    /* NUEVO: oculto al inicio */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -102,7 +106,6 @@ body {
     backdrop-filter: blur(7px);
     border-bottom: 1px solid var(--verde-fuerza);
 
-    /* NUEVO: visible */
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -160,7 +163,7 @@ body {
     transform: scale(1.2);
 }
 
-/* ── Botón Hamburguesa (Móvil) ── */
+/* Botón Hamburguesa (Móvil) */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -191,7 +194,7 @@ body {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* ── Botón de Sonido ── */
+/* Botón de Sonido */
 .btn-sonido {
     background: none;
     border: none;
@@ -215,13 +218,11 @@ body {
     transition: color 0.3s ease, filter 0.3s ease;
 }
 
-/* Estado activo: ícono en verde sable con glow */
 .btn-sonido.sonido-activo .icono-sonido {
     color: var(--verde-yoda);
     filter: drop-shadow(0 0 6px rgba(57, 255, 122, 0.8));
 }
 
-/* Ondas que pulsan cuando el sonido está ON */
 .btn-sonido.sonido-activo .onda-1 {
     animation: pulsarOnda 1.6s ease-in-out infinite;
 }
@@ -258,7 +259,6 @@ body {
     width: 100%;
 }
 
-/* Cada sección ocupa la pantalla completa y se centra vertical y horizontalmente */
 .seccion-completa {
     min-height: 100vh;
     width: 100%;
@@ -271,7 +271,6 @@ body {
     scroll-snap-stop: always;
 }
 
-/* 1. Hero: Logo compuesto (imagen + tagline) */
 .seccion-hero {
     flex-direction: column;
     padding-top: 2rem;
@@ -287,11 +286,9 @@ body {
     animation: flotar 5s ease-in-out infinite;
 }
 
-/* Imagen del logo principal */
 .hero-logo-img {
     width: clamp(440px, 76vw, 920px);
     height: auto;
-    /* Convierte el PNG (verde sobre blanco) a sable verde sobre transparente */
     filter:
         brightness(0) saturate(100%)
         invert(1)
@@ -337,7 +334,7 @@ body {
     50%       { opacity: 0.35; }
 }
 
-/* 2. Sección Sobre Nosotros */
+/* Sección Sobre Nosotros */
 .seccion-descripcion {
     scroll-margin-top: 0;
 }
@@ -425,11 +422,11 @@ body {
     font-family: var(--fuente-texto);
 }
 
-/* 3. Sección Staff: Pantalla completa centrada */
+/* Sección Staff: Pantalla completa centrada */
 .main-integrantes {
     scroll-snap-align: start;
-    scroll-margin-top: 0;
-    min-height: 85vh;
+    scroll-margin-top: 80px;
+    min-height: 80vh;
 }
 
 .contenedor-staff {
@@ -441,7 +438,6 @@ body {
     max-width: 1250px;
 }
 
-/* SISTEMA DE REVELADO SUAVE POR SCROLL (Fade-in lento y cinematográfico) */
 .revelable {
     opacity: 0;
     transform: translateY(40px) scale(0.97);
@@ -494,21 +490,17 @@ body {
     line-height: 1.55;
 }
 
-/* =====================================================
-   CARRUSEL INFINITO DE STAFF
-   ===================================================== */
-
-/* Viewport: recorta el desbordamiento horizontal */
+   /* CARRUSEL INFINITO DE STAFF */
 .carousel-viewport {
     position: relative;
     width: 100%;
     overflow: hidden;
-    /* Pausa la animación del track al hacer hover en el viewport */
-    cursor: grab;
+
+    cursor: url('../img/sable-de-luz.png') 0 0, auto !important; 
 }
 
 .carousel-viewport:active {
-    cursor: grabbing;
+    cursor: url('../img/sable-de-luz.png') 0 0, auto !important;
 }
 
 /* Pausa el carrusel al hover */
@@ -516,7 +508,6 @@ body {
     animation-play-state: paused;
 }
 
-/* Gradiente de fade lateral izquierdo */
 .carousel-fade-left,
 .carousel-fade-right {
     position: absolute;
@@ -537,19 +528,15 @@ body {
     background: linear-gradient(270deg, var(--bg-espacio) 0%, transparent 100%);
 }
 
-/* Track del carrusel: flex horizontal */
 .grilla-integrantes {
     display: flex;
     gap: 1.8rem;
     width: max-content;
     padding: 1.5rem 0.5rem 2rem;
-    /* JS actualizará el transform para el scroll */
     transform: translateX(0);
 }
 
-/* =====================================================
-   TARJETAS STAR WARS - DATAPAD IMPERIAL V2
-   ===================================================== */
+/* TARJETAS */
 .tarjeta-resumen {
     position: relative;
     background: 
@@ -561,10 +548,8 @@ body {
     flex-direction: column;
     align-items: stretch;
     overflow: hidden;
-    /* Tamaño fijo en el carrusel */
     width: 340px;
     flex-shrink: 0;
-    /* Esquinas cortadas tipo datapad imperial */
     clip-path: polygon(
         0 0,
         calc(100% - 18px) 0,
@@ -582,18 +567,16 @@ body {
                 box-shadow 0.4s ease,
                 border-color 0.4s ease,
                 opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-    /* Animación de entrada: las cards escalan desde pequeñas */
+    /* Animación de entrada */
     opacity: 0;
     transform: translateY(30px) scale(0.92);
 }
 
-/* Activada por JS cuando el bloque entra al viewport */
 .tarjeta-resumen.card-visible {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* Línea de energía superior animada */
 .tarjeta-resumen::before {
     content: '';
     position: absolute;
@@ -614,7 +597,6 @@ body {
     z-index: 5;
 }
 
-/* Decorador de esquina inferior-izquierda */
 .tarjeta-resumen::after {
     content: '';
     position: absolute;
@@ -638,14 +620,13 @@ body {
     100% { background-position: -200% 0; }
 }
 
-/* Efecto escalonado (stagger) para aparición inicial */
+/* Efecto escalonado para aparición inicial */
 .grilla-integrantes .tarjeta-resumen:nth-child(1) { transition-delay: 0.05s; }
 .grilla-integrantes .tarjeta-resumen:nth-child(2) { transition-delay: 0.15s; }
 .grilla-integrantes .tarjeta-resumen:nth-child(3) { transition-delay: 0.25s; }
 .grilla-integrantes .tarjeta-resumen:nth-child(4) { transition-delay: 0.35s; }
 .grilla-integrantes .tarjeta-resumen:nth-child(5) { transition-delay: 0.45s; }
 
-/* Líneas de escaneo holográficas */
 .card-scanline {
     position: absolute;
     top: 0;
@@ -675,11 +656,9 @@ body {
     50%       { opacity: 0.4; box-shadow: 0 0 2px var(--card-color, var(--verde-yoda)); }
 }
 
-/* =====================================================
-   ESTRUCTURA INTERNA DE LA TARJETA
-   ===================================================== */
+/* ESTRUCTURA INTERNA DE LA TARJETA */
 
-/* Encabezado táctico de tarjeta */
+/* Encabezado de tarjeta */
 .card-badge-header {
     width: 100%;
     display: flex;
@@ -710,7 +689,7 @@ body {
     animation: palpitar 2s infinite ease-in-out;
 }
 
-/* Cuerpo principal de la tarjeta (layout horizontal) */
+/* Cuerpo principal de la tarjeta */
 .card-cuerpo {
     display: flex;
     flex-direction: column;
@@ -723,7 +702,7 @@ body {
     flex: 1;
 }
 
-/* Marco del Avatar con aura de lightsaber */
+/* Marco del Avatar */
 .avatar-marco {
     position: relative;
     flex-shrink: 0;
@@ -772,7 +751,7 @@ body {
 }
 
 .avatar-aura {
-    display: none; /* Reemplazado por ::before en .avatar-marco */
+    display: none;
 }
 
 @keyframes rotarAura {
@@ -792,7 +771,6 @@ body {
     width: 100%;
 }
 
-/* Tipografía de la Card */
 .tarjeta-resumen h2 {
     font-family: var(--fuente-especial);
     font-size: 2rem;
@@ -823,7 +801,6 @@ body {
     z-index: 2;
 }
 
-/* Telemetría galáctica / datos Star Wars */
 .card-telemetria {
     width: 100%;
     background: linear-gradient(135deg, rgba(9, 13, 20, 0.8), rgba(5, 10, 18, 0.9));
@@ -863,9 +840,7 @@ body {
     color: #b8c9d8;
 }
 
-/* =====================================================
-   BOTONES DE LA TARJETA
-   ===================================================== */
+/* BOTONES DE LA TARJETA */
 .card-botones {
     display: flex;
     gap: 0;
@@ -950,12 +925,6 @@ body {
     outline-offset: -4px;
 }
 
-/* =====================================================
-   COLORES DE FACCIÓN POR CSS CUSTOM PROPERTIES
-   Aplicado directamente en el HTML via style="--card-color: ..."
-   ===================================================== */
-
-/* Hover genérico: glow perimetral con el color de facción */
 .tarjeta-resumen:hover {
     border-color: var(--card-color, var(--verde-yoda));
     box-shadow: 
@@ -1049,15 +1018,13 @@ body {
     }
     .main-integrantes.seccion-completa {
         min-height: 85vh;
-        scroll-snap-align: start;      /* en vez de center */
-        scroll-snap-stop: normal;      /* permite pasar de largo */
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
     }
 
 }
 
-/* Carrusel: en tablets aplica layout vertical dentro de la card */
 @media (min-width: 900px) {
-    /* Las cards ya tienen width fijo en el carrusel, solo ajustamos internos */
     .card-cuerpo {
     display: flex;
     flex-direction: column;
@@ -1127,9 +1094,6 @@ body {
 }
 }
 
-/* =====================================================
-   MINI CARDS (CONTROLES DE CARRUSEL)
-   ===================================================== */
 .mini-cards-container {
     display: flex;
     justify-content: center;
@@ -1151,7 +1115,7 @@ body {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-    cursor: pointer;
+    cursor: url('../img/sable-de-luz.png') 0 0, auto !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(57, 255, 122, 0.05);
 }
 
@@ -1164,11 +1128,6 @@ body {
 }
 
 
-/* =====================================================
-   SISTEMA DE RESPONSIVIDAD (400px, 900px, 1200px)
-   ===================================================== */
-
-/* 1. DISPOSITIVOS MÓVILES PEQUEÑOS (Hasta 400px) */
 @media (max-width: 400px) {
     .header-fijo, .header-perfil {
         padding: 0.6rem 0.8rem;
@@ -1188,9 +1147,7 @@ body {
     }
 }
 
-/* 2. TABLETS Y MÓVILES GRANDES (Hasta 900px) */
 @media (max-width: 900px) {
-    /* Configuración del menú hamburguesa compartida */
     .menu-toggle { 
         display: flex; 
     }
@@ -1237,14 +1194,12 @@ body {
     }
     .seccion-completa {
         height: auto;
-        padding: 6rem 1rem 3rem 1rem; /* Más padding superior para que el nav no tape el contenido */
+        padding: 6rem 1rem 3rem 1rem;
     }
 }
-
-/* 3. ESCRITORIO (Desde 900px a 1199px) */
 @media (min-width: 900px) {
     .menu-toggle {
-        display: none; /* Asegura que el botón hamburguesa desaparezca */
+        display: none;
     }
     .navegacion-principal {
         flex-direction: row;
@@ -1255,7 +1210,6 @@ body {
     }
 }
 
-/* 4. PANTALLAS GRANDES (1200px o más) */
 @media (min-width: 1200px) {
     .header-fijo { 
         padding: 1rem 5rem; 
@@ -1277,4 +1231,5 @@ body {
         max-width: 1200px;
         margin: 0 auto;
     }
+
 }

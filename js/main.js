@@ -8,7 +8,6 @@ function ajustarTamanio() {
 window.addEventListener('resize', ajustarTamanio);
 ajustarTamanio();
 
-// Configuración del motor de viaje espacial e hiperespacio
 const estrellas = [];
 const CANTIDAD_ESTRELLAS = 220;
 
@@ -16,7 +15,7 @@ const CANTIDAD_ESTRELLAS = 220;
 let velocidadActual = 6;            // Velocidad inicial base
 let velocidadObjetivo = 6;          // Velocidad meta calculada
 const VELOCIDAD_BASE = 6;           // Velocidad mínima en la cima
-const VELOCIDAD_MAXIMA = 75;        // Velocidad en el fondo de la página
+const VELOCIDAD_MAXIMA = 33;        // Velocidad en el fondo de la página
 
 class Estrella {
     constructor() {
@@ -31,7 +30,7 @@ class Estrella {
         this.prevZ = this.z;
         this.radioBase = Math.random() * 1.6 + 0.8;
         
-        // Tonos lumínicos galácticos: blanco estelar, cian, y verde sable de luz
+        // Tonos lumínicos
         const tonos = ['#FFFFFF', '#E0F2FE', '#BAE6FD', '#67E8F9', '#39FF7A', '#1DB954', '#A7F3D0'];
         this.color = tonos[Math.floor(Math.random() * tonos.length)];
     }
@@ -40,7 +39,6 @@ class Estrella {
         this.prevZ = this.z;
         this.z -= velocidadActual;
         
-        // Al sobrepasar el punto de visión, se reubica al fondo
         if (this.z <= 0) {
             this.resetear();
         }
@@ -52,12 +50,10 @@ class Estrella {
         const posX = this.x * k + canvas.width / 2;
         const posY = this.y * k + canvas.height / 2;
 
-        // Si se sale de pantalla, no dibujar
         if (posX < -50 || posX > canvas.width + 50 || posY < -50 || posY > canvas.height + 50) {
             return;
         }
 
-        // A mayor velocidad, las estrellas se estiran en estelas de luz (Hyperspace streaks)
         if (velocidadActual > 10) {
             const prevK = canvas.width / Math.max(this.prevZ, 1);
             const prevPosX = this.x * prevK + canvas.width / 2;
@@ -89,7 +85,7 @@ for (let i = 0; i < CANTIDAD_ESTRELLAS; i++) {
     estrellas.push(new Estrella());
 }
 
-// Suavizado cinemático de aceleración (Inercia de la nave)
+// Suavizado cinemático de aceleración
 function actualizarVelocidad() {
     const factorInercia = 0.08; // Suavidad de transición
     velocidadActual += (velocidadObjetivo - velocidadActual) * factorInercia;
@@ -99,7 +95,6 @@ function actualizarVelocidad() {
 function animarEspacio() {
     actualizarVelocidad();
 
-    // Limpia y crea un rastro translúcido para permitir ver la imagen de textura del fondo
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < estrellas.length; i++) {
@@ -112,8 +107,7 @@ function animarEspacio() {
 
 animarEspacio();
 
-// Control de velocidad continuo por profundidad de Scroll
-// Cuanto más abajo se scrollea, más se acelera la nave
+// Control de velocidad por Scroll
 function calcularVelocidadPorScroll() {
     const scrollMaximo = Math.max(
         document.documentElement.scrollHeight - window.innerHeight,
@@ -122,7 +116,6 @@ function calcularVelocidadPorScroll() {
     const scrollActual = window.scrollY || window.pageYOffset || 0;
     const factorProgreso = Math.min(Math.max(scrollActual / scrollMaximo, 0), 1);
 
-    // Curva de aceleración: a mayor scroll, hiperespacio continuo
     velocidadObjetivo = VELOCIDAD_BASE + (VELOCIDAD_MAXIMA - VELOCIDAD_BASE) * Math.pow(factorProgreso, 1.2);
 }
 
@@ -133,9 +126,7 @@ calcularVelocidadPorScroll();
 // SCROLL Y ANIMACIONES
 document.addEventListener('DOMContentLoaded', () => {
     
-    // =====================================================
     //  CARRUSEL INFINITO DE STAFF
-    // =====================================================
     const track = document.getElementById('carousel-track');
 
     if (track) {
@@ -143,13 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentX = 0;
         let isPaused = true;
         let animationFrameId;
-        const speed = 1.2; // Velocidad en píxeles por frame
+        const speed = 1.2;
         let seekTargetId = null;
 
                 function animarCarrusel() {
             let shouldMove = !isPaused;
             let currentSpeed = speed;
-            let moveDirection = -1; // -1 for left, 1 for right
+            let moveDirection = -1;
 
             if (seekTargetId) {
                 const targetCard = document.getElementById(seekTargetId);
@@ -161,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const diff = cardCenter - viewportCenter;
                     
                     if (Math.abs(diff) <= 15) {
-                        currentX -= diff; // snap to exact center
+                        currentX -= diff;
                         shouldMove = true; 
                         moveDirection = 0; 
                     } else {
@@ -232,16 +223,15 @@ document.addEventListener('DOMContentLoaded', () => {
         miniCards.forEach(mc => {
             mc.addEventListener('mouseenter', () => {
                 seekTargetId = mc.getAttribute('data-target');
-                isPaused = true; // Pause normal scrolling so it stays centered
+                isPaused = true;
             });
             mc.addEventListener('mouseleave', () => {
                 seekTargetId = null;
-                isPaused = false; // Resume normal scrolling
+                isPaused = false;
             });
         });
     }
 
-    // Observador de revelado para otras secciones (hero, sobre nosotros)
     const elementosRevelables = document.querySelectorAll('.revelable');
     
     if (elementosRevelables.length > 0) {
@@ -261,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elementosRevelables.forEach((el) => observadorScroll.observe(el));
     }
 
-    // Función de scroll ultra suave con velocidad reducida a la mitad (duración extendida a 1600ms)
+    // Función de scroll suave
     function desplazamientoLentoSuave(posicionDestino, duracion = 1600) {
         const posicionInicial = window.pageYOffset || document.documentElement.scrollTop;
         const distancia = posicionDestino - posicionInicial;
@@ -272,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const tiempoTranscurrido = tiempoActual - tiempoInicio;
             const progreso = Math.min(tiempoTranscurrido / duracion, 1);
 
-            // Función de suavizado easeInOutCubic para una cinemática majestuosa
             const factorSuavizado = progreso < 0.5 
                 ? 4 * progreso * progreso * progreso 
                 : 1 - Math.pow(-2 * progreso + 2, 3) / 2;
@@ -287,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animacion);
     }
 
-    // Navegación ultrasuave y centrada para enlaces internos (#...) al 50% de velocidad
     const enlacesInternos = document.querySelectorAll('a[href^="#"]');
     enlacesInternos.forEach((enlace) => {
         enlace.addEventListener('click', (e) => {

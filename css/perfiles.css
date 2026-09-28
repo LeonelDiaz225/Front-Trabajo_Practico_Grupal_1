@@ -61,7 +61,7 @@
     }
 }
 
-/* Ajustes finos para 400px */
+/* Ajustes para 400px */
 @media (max-width: 400px) {
     .header-perfil.header-fijo {
         padding: 0.6rem 0.8rem;
@@ -197,7 +197,7 @@
     isolation: isolate;
 }
 
-/* Aura exterior: núcleo de sable y difusión de energía sobre el fondo espacial. */
+/* Aura exterior */
 .tarjeta-inner::before {
     content: '';
     position: absolute;
@@ -572,19 +572,16 @@ h3 {
         padding: 0.35rem 0.6rem;
     }
     
-    /* 1. Altura fija mayor necesaria para que el 3D funcione con el contenido apilado en vertical */
     .tarjeta-flip { 
-        height: 800px; /* Puedes subir o bajar este número si ves que te sobra o falta espacio abajo */
+        height: 800px;
         min-height: unset;
     }
     
-    /* 2. Apilamos las columnas, pero ELIMINAMOS los bloqueos que rompían el giro 3D */
     .tarjeta-frente, 
     .tarjeta-dorso { 
         flex-direction: column; 
     }
     
-    /* 3. Las columnas usan el ancho completo */
     .columna-izq, 
     .columna-der { 
         width: 100%; 

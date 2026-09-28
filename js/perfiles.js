@@ -7,10 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.navegacion-principal .nav-link');
 
     if (enPerfil || enBitacora) {
-        // Quitamos cualquier "activo" hardcodeado
         navLinks.forEach(link => link.classList.remove('activo'));
 
-        // Marcamos el que corresponde
         if (enPerfil) {
             const linkStaff = document.querySelector('.navegacion-principal a[href*="#seccion-integrantes"]');
             if (linkStaff) linkStaff.classList.add('activo');
