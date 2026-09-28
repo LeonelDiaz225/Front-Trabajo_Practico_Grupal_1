@@ -23,14 +23,14 @@ El proyecto presenta al equipo, expone sus propósitos y filosofía técnica, de
 - **JavaScript (Vanilla):**
   - Animación de partículas estelares en `<canvas>` 2D con simulación de profundidad tridimensional (`z-index: -1`, `requestAnimationFrame`).
   - Detección de desplazamiento (`scroll`) y observador de intersección (`IntersectionObserver`) para visibilidad y fijación dinámica de encabezado.
-  - Interacción táctil/clic en tarjetas de integrantes con efecto *Flip 3D* para conmutar datos personales y multimedia favorita.
+  - Interacción táctil/clic en tarjetas de integrantes con efecto _Flip 3D_ para conmutar datos personales y multimedia favorita.
 - **Google Fonts:**
-  - *Space Grotesk* (títulos principales y botones).
-  - *Inter* (cuerpo de texto y legibilidad general).
-  - *Orbitron* (navegación y pie de página).
-  - *Syne* (nombres y subtítulos).
-  - *Plus Jakarta Sans* (roles y textos secundarios).
-  - *Zen Dots* (detalles futuristas y títulos destacados).
+  - _Space Grotesk_ (títulos principales y botones).
+  - _Inter_ (cuerpo de texto y legibilidad general).
+  - _Orbitron_ (navegación y pie de página).
+  - _Syne_ (nombres y subtítulos).
+  - _Plus Jakarta Sans_ (roles y textos secundarios).
+  - _Zen Dots_ (detalles futuristas y títulos destacados).
 - **Iconografía & Recursos:** imágenes y logotipos optimizados en formato WebP/PNG/JPG representativos del universo espacial y temático del equipo.
 
 ---
@@ -40,12 +40,6 @@ El proyecto presenta al equipo, expone sus propósitos y filosofía técnica, de
 ```text
 Front-Trabajo_Practico_Grupal_1/
 ├── index.html              # Portada principal: hero, propósito y staff de integrantes
-├── bitacora.html           # Bitácora oficial: métricas, fases, acuerdos y dificultades
-├── leonel.html             # Perfil individual de Leonel Diaz
-├── maximiliano.html        # Perfil individual de Maximiliano Millan
-├── itziar.html             # Perfil individual de Itziar Urriola
-├── yohana.html             # Perfil individual de Yohana Olivera
-├── melisa.html             # Perfil individual de Melisa Solano
 ├── README.md               # Documentación general y técnica del proyecto
 ├── css/
 │   ├── style.css           # Estilos globales, canvas espacial, portada y media queries
@@ -54,7 +48,14 @@ Front-Trabajo_Practico_Grupal_1/
 ├── js/
 │   ├── main.js             # Motor de canvas espacial, estrellas y scroll/header reactivo
 │   └── perfiles.js         # Controlador del giro interactivo 3D en las tarjetas
-└── img/                    # Avatares, portadas de películas, discos y logotipos
+├── img/                    # Avatares, portadas de películas, discos y logotipos
+└── pages/
+  ├── bitacora.html       # Bitácora oficial: métricas, fases, acuerdos y dificultades
+  ├── leonel.html         # Perfil individual de Leonel Diaz
+  ├── maximiliano.html    # Perfil individual de Maximiliano Millan
+  ├── itziar.html         # Perfil individual de Itziar Urriola
+  ├── yohana.html         # Perfil individual de Yohana Olivera
+  └── melisa.html         # Perfil individual de Melisa Solano
 ```
 
 ---
@@ -68,10 +69,11 @@ La identidad visual está inspirada en la dualidad y equilibrio del desarrollo w
 - **Fondo Espacial:** `#090D14` (profundidad oscura del universo).
 - **Verde Yoda (Luz):** `#58C98B` (acento principal, títulos y estados activos).
 - **Verde Fuerza:** `#418576` (bordes sutiles, divisiones y detalles).
-- **Azul Labs:** `#214358` (superficies de tarjetas y estados *hover* de navegación).
+- **Azul Labs:** `#214358` (superficies de tarjetas y estados _hover_ de navegación).
 - **Texto Claro:** `#E2E8F0` (alta legibilidad y contraste óptimo).
 
-*Acentos personalizados por integrante:*
+_Acentos personalizados por integrante:_
+
 - Leonel: `#007bff` (Azul luminoso).
 - Maximiliano: `#ff9900` (Naranja estelar).
 - Yohana: `#ff66b2` (Rosa nébula).
@@ -81,6 +83,7 @@ La identidad visual está inspirada en la dualidad y equilibrio del desarrollo w
 ### Breakpoints Adaptativos (Responsive Design)
 
 El proyecto implementa los breakpoints obligatorios de la consigna para garantizar una visualización sin desbordes:
+
 - **`400px` (Móviles / Small screens):** espaciados compactos, una sola columna para tarjetas y adaptación vertical de componentes sin recortes.
 - **`900px` (Tablets / Dispositivos medianos):** reorganización de la grilla de staff en 3 columnas y vista adaptada para la tarjeta de perfil.
 - **`1200px` (Escritorio / Grandes resoluciones):** grilla de 5 integrantes en una sola fila panorámica y contenedores con márgenes holgados.
@@ -90,31 +93,40 @@ El proyecto implementa los breakpoints obligatorios de la consigna para garantiz
 ## Funciones JavaScript
 
 ### 1. Canvas Estelar Tridimensional y Aceleración Espacial (`js/main.js`)
+
 Genera más de 220 partículas estelares calculando su posición tridimensional `(x, y, z)` y velocidad relativa con respecto al centro de la ventana. Incorpora un motor de **velocidad variable continua**:
+
 - **Velocidad base:** desplazamiento fluido en la parte superior.
-- **Aceleración progresiva por profundidad (*Scroll Depth*):** a medida que el usuario desciende en la página, la velocidad se incrementa exponencialmente hasta alcanzar el hiperespacio (las estrellas se estiran en rayos lumínicos *hyperspace streaks*).
+- **Aceleración progresiva por profundidad (_Scroll Depth_):** a medida que el usuario desciende en la página, la velocidad se incrementa exponencialmente hasta alcanzar el hiperespacio (las estrellas se estiran en rayos lumínicos _hyperspace streaks_).
 - **Inercia cinemática:** suavizado en cada cuadro que brinda sensación de peso y aceleración real de nave espacial.
 
 ### 2. Header Reactivo al Desplazamiento (`js/main.js`)
+
 Controla la aparición suave del texto de descripción con `IntersectionObserver` y monitorea el scroll vertical para acoplar inmediatamente el navbar fijo en la parte superior apenas el usuario inicia el desplazamiento hacia abajo (`scrollY > 40px`).
 
 ### 3. Tarjeta Interactiva Flip 3D (js/perfiles.js)
+
 Agrega interactividad dinámica a la tarjeta personal del integrante. Mediante eventos de clic o teclado, conmuta la clase .girada para realizar una rotación de 180° sobre el eje Y con perspectiva 3D, permitiendo alternar de forma natural entre la vista de datos/habilidades y el dorso con películas y discos favoritos.
 
 ### 4. Carrusel Infinito JS Nativo (js/main.js)
-Crea un slider continuo para las tarjetas del equipo mediante equestAnimationFrame. Evita la contaminación del DOM (no utiliza clones de nodos) y, matemáticamente, reubica la primera tarjeta al final cuando sale completamente del área visible, compensando la transformación del track para lograr un loop visualmente perfecto y con pausa inteligente al hacer hover.
+
+Crea un slider continuo para las tarjetas del equipo mediante
+equestAnimationFrame. Evita la contaminación del DOM (no utiliza clones de nodos) y, matemáticamente, reubica la primera tarjeta al final cuando sale completamente del área visible, compensando la transformación del track para lograr un loop visualmente perfecto y con pausa inteligente al hacer hover.
 
 ### 5. Navegación Móvil Hamburguesa & ScrollSpy (js/main.js)
+
 Implementa un menú desplegable responsivo (para <768px) que se oculta mediante clip-path para animaciones fluidas, y cuenta con cierre automático al hacer clic en enlaces internos. Adicionalmente, IntersectionObserver colorea de verde dinámicamente el enlace activo de la barra superior conforme el usuario escrolea las secciones.
 
 ### 6. Sistema de Audio Espacial Interactivo (js/main.js)
-Integra el tema principal (	heme.mp3) respetando las políticas de navegadores: fuerza el un-mute y comienza la pista en bucle desde un tiempo específico (segundo 3), reaccionando a un botón de la barra de navegación que actualiza dinámicamente sus SVG para mostrar si el audio está activo o pausado.
+
+Integra el tema principal ( heme.mp3) respetando las políticas de navegadores: fuerza el un-mute y comienza la pista en bucle desde un tiempo específico (segundo 3), reaccionando a un botón de la barra de navegación que actualiza dinámicamente sus SVG para mostrar si el audio está activo o pausado.
 
 ---
 
 ## Sección Bitácora de Desarrollo
 
 Accesible desde el menú principal (`bitacora.html`), recopila el historial real del equipo:
+
 - **Organización y Arquitectura:** acuerdos iniciales y repositorio.
 - **Identidad Visual y Canvas:** diseño galáctico y desarrollo de animaciones.
 - **Perfiles y Tarjetas 3D:** unificación de fichas de integrantes, películas y música.
@@ -125,6 +137,7 @@ Accesible desde el menú principal (`bitacora.html`), recopila el historial real
 ## Uso de Inteligencia Artificial y Criterio de Autoría
 
 Conforme a la consigna del trabajo práctico:
+
 - **Herramientas y Modelos Utilizados:** Asistente técnico impulsado por modelos avanzados de lenguaje (Gemini / Claude) en planes estándar.
 - **Ámbitos de Asistencia:** Colaboró en la generación de fórmulas matemáticas para la proyección de perspectiva del canvas espacial, sugerencias de sintaxis CSS moderna para transformaciones 3D, y redacción de borradores de la documentación técnica.
 - **Criterio de Adaptación y Autoría:** Cada línea de código e interacción generada fue revisada línea por línea, adaptada a la estética propia de **Yoda Labs**, testeada en diferentes resoluciones y validada en su integración con la estructura del sitio por los integrantes del equipo. Las decisiones temáticas, la selección de contenidos personales y el control de diseño final corresponden enteramente al equipo de estudiantes.
@@ -134,5 +147,4 @@ Conforme a la consigna del trabajo práctico:
 ## Publicación
 
 - **Repositorio de GitHub:** [LeonelDiaz225/Front-Trabajo_Practico_Grupal_1](https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git)
-- **Despliegue en Vercel:** *En proceso de configuración y despliegue*
-
+- **Despliegue en Vercel:** _En proceso de configuración y despliegue_
