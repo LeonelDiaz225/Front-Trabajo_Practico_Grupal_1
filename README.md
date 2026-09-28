@@ -11,8 +11,8 @@ El proyecto presenta al equipo, expone sus propósitos y filosofía técnica, de
 - **Leonel Diaz** - Santa Fe | GitHub: [LeonelDiaz225](https://github.com/LeonelDiaz225) | Portfolio: [repo-front-phi.vercel.app](https://repo-front-phi.vercel.app/)
 - **Maximiliano Millan** - Buenos Aires | GitHub: [Plecto](https://github.com/estoesplecto) | Portfolio: [mmillan.vercel.app](https://mmillan.vercel.app/)
 - **Itziar Urriola** - Buenos Aires | GitHub: [Itz-U](https://github.com/itziarurriola) | Portfolio: [pfo-1-portfolio-itziar-urriola.vercel.app](https://pfo-1-portfolio-itziar-urriola.vercel.app/)
-- **Yohana Olivera** - Tucumán | GitHub: [Yohana Olivera](https://github.com/LeonelDiaz225) | Portfolio: [yohaolivera.github.io/pfo-portfolio-yohana](https://yohaolivera.github.io/pfo-portfolio-yohana/)
-- **Melisa Solano** - Buenos Aires | GitHub: [Melisa Solano](https://github.com/LeonelDiaz225) | Portfolio: [portfolio-melisa.vercel.app](https://portfolio-melisa.vercel.app/)
+- **Yohana Olivera** - Tucumán | GitHub: [Yohana Olivera](https://github.com/YohaOlivera) | Portfolio: [yohaolivera.github.io/pfo-portfolio-yohana](https://yohaolivera.github.io/pfo-portfolio-yohana/)
+- **Melisa Solano** - Buenos Aires | GitHub: [Melisa Solano](https://github.com/melulu169) | Portfolio: [portfolio-melisa.vercel.app](https://portfolio-melisa.vercel.app/)
 
 ---
 
@@ -50,12 +50,12 @@ Front-Trabajo_Practico_Grupal_1/
 │   └── perfiles.js         # Controlador del giro interactivo 3D en las tarjetas
 ├── img/                    # Avatares, portadas de películas, discos y logotipos
 └── pages/
-  ├── bitacora.html       # Bitácora oficial: métricas, fases, acuerdos y dificultades
-  ├── leonel.html         # Perfil individual de Leonel Diaz
-  ├── maximiliano.html    # Perfil individual de Maximiliano Millan
-  ├── itziar.html         # Perfil individual de Itziar Urriola
-  ├── yohana.html         # Perfil individual de Yohana Olivera
-  └── melisa.html         # Perfil individual de Melisa Solano
+    ├── bitacora.html       # Bitácora oficial: métricas, fases, acuerdos y dificultades
+    ├── leonel.html         # Perfil individual de Leonel Diaz
+    ├── maximiliano.html    # Perfil individual de Maximiliano Millan
+    ├── itziar.html         # Perfil individual de Itziar Urriola
+    ├── yohana.html         # Perfil individual de Yohana Olivera
+    └── melisa.html         # Perfil individual de Melisa Solano
 ```
 
 ---
@@ -104,14 +104,13 @@ Genera más de 220 partículas estelares calculando su posición tridimensional 
 
 Controla la aparición suave del texto de descripción con `IntersectionObserver` y monitorea el scroll vertical para acoplar inmediatamente el navbar fijo en la parte superior apenas el usuario inicia el desplazamiento hacia abajo (`scrollY > 40px`).
 
-### 3. Tarjeta Interactiva Flip 3D (js/perfiles.js)
+### 3. Tarjeta Interactiva Flip 3D en cada perfil (`js/perfiles.js`)
 
-Agrega interactividad dinámica a la tarjeta personal del integrante. Mediante eventos de clic o teclado, conmuta la clase .girada para realizar una rotación de 180° sobre el eje Y con perspectiva 3D, permitiendo alternar de forma natural entre la vista de datos/habilidades y el dorso con películas y discos favoritos.
+El archivo se carga en `leonel.html`, `maximiliano.html`, `yohana.html`, `melisa.html` e `itziar.html`. En cada perfil agrega un evento de clic a la tarjeta `#tarjeta-perfil` y conmuta la clase `.girada`. Esto realiza una rotación de 180° sobre el eje Y con perspectiva 3D y permite alternar entre la presentación, las habilidades y la multimedia favorita de cada integrante.
 
 ### 4. Carrusel Infinito JS Nativo (js/main.js)
 
-Crea un slider continuo para las tarjetas del equipo mediante
-equestAnimationFrame. Evita la contaminación del DOM (no utiliza clones de nodos) y, matemáticamente, reubica la primera tarjeta al final cuando sale completamente del área visible, compensando la transformación del track para lograr un loop visualmente perfecto y con pausa inteligente al hacer hover.
+Crea un slider continuo para las tarjetas del equipo mediante `requestAnimationFrame`. Evita la contaminación del DOM (no utiliza clones de nodos) y, matemáticamente, reubica la primera tarjeta al final cuando sale completamente del área visible, compensando la transformación del track para lograr un loop visualmente perfecto y con pausa inteligente al hacer hover.
 
 ### 5. Navegación Móvil Hamburguesa & ScrollSpy (js/main.js)
 
@@ -119,13 +118,34 @@ Implementa un menú desplegable responsivo (para <768px) que se oculta mediante 
 
 ### 6. Sistema de Audio Espacial Interactivo (js/main.js)
 
-Integra el tema principal ( heme.mp3) respetando las políticas de navegadores: fuerza el un-mute y comienza la pista en bucle desde un tiempo específico (segundo 3), reaccionando a un botón de la barra de navegación que actualiza dinámicamente sus SVG para mostrar si el audio está activo o pausado.
+Integra el tema principal (`song/theme.mp3`) respetando las políticas de navegadores: controla el mute y la reproducción en bucle mediante el botón de sonido de la barra de navegación, que actualiza dinámicamente su SVG para indicar si el audio está activo o pausado.
+
+### 7. Funciones compartidas en cada perfil
+
+Todos los perfiles de `pages/` comparten la navegación hacia la portada, la bitácora y los demás integrantes. Además, cada uno utiliza:
+
+- Una tarjeta Flip 3D para mostrar y ocultar información personal.
+- Galerías enlazadas de películas y discos favoritos.
+- El botón de sonido compartido para controlar el audio espacial.
+- Navegación anterior, siguiente y retorno al staff.
+
+## Capturas de pantalla
+
+El README queda preparado para incorporar las capturas finales del proyecto. Se recomienda agregar, dentro de `img/capturas/`, al menos:
+
+1. `portada.png`: portada con el hero y la sección Staff.
+2. `perfil-leonel.png`: tarjeta de perfil mostrando el frente.
+3. `perfil-leonel-flip.png`: tarjeta girada mostrando películas y discos.
+4. `bitacora.png`: tabla de la bitácora.
+5. `responsive-mobile.png`: vista responsive en un ancho menor a `400px`.
+
+Luego pueden insertarse en esta sección con el formato `![Descripción](img/capturas/nombre.png)`.
 
 ---
 
 ## Sección Bitácora de Desarrollo
 
-Accesible desde el menú principal (`bitacora.html`), recopila el historial real del equipo:
+Accesible desde el menú principal (`pages/bitacora.html`), recopila el historial real del equipo:
 
 - **Organización y Arquitectura:** acuerdos iniciales y repositorio.
 - **Identidad Visual y Canvas:** diseño galáctico y desarrollo de animaciones.
@@ -147,4 +167,18 @@ Conforme a la consigna del trabajo práctico:
 ## Publicación
 
 - **Repositorio de GitHub:** [LeonelDiaz225/Front-Trabajo_Practico_Grupal_1](https://github.com/LeonelDiaz225/Front-Trabajo_Practico_Grupal_1.git)
-- **Despliegue en Vercel:** _En proceso de configuración y despliegue_
+- **Despliegue en Vercel:** [front-trabajo-practico-grupal-1.vercel.app](https://front-trabajo-practico-grupal-1.vercel.app/)
+
+---
+
+## Evolución y ampliaciones para próximos trabajos
+
+Para futuras entregas se podrían incorporar las siguientes mejoras:
+
+- Agregar un formulario de contacto con validación de datos.
+- Incorporar un sistema de filtros para buscar integrantes por habilidades o tecnologías.
+- Reemplazar el contenido estático por datos cargados desde un archivo JSON o una API.
+- Mejorar la accesibilidad con navegación completa mediante teclado, foco visible y más atributos ARIA.
+- Optimizar las imágenes y el audio para mejorar el rendimiento y los tiempos de carga.
+- Añadir nuevas secciones, como proyectos del equipo, recursos compartidos o novedades.
+- Incorporar pruebas de usabilidad y registrar los resultados en la bitácora.
