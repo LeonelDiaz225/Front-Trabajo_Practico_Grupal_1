@@ -131,15 +131,29 @@ Todos los perfiles de `pages/` comparten la navegación hacia la portada, la bit
 
 ## Capturas de pantalla
 
-El README queda preparado para incorporar las capturas finales del proyecto. Se recomienda agregar, dentro de `img/capturas/`, al menos:
+Las siguientes capturas muestran las principales vistas e interacciones del proyecto:
 
-1. `portada.png`: portada con el hero y la sección Staff.
-2. `perfil-leonel.png`: tarjeta de perfil mostrando el frente.
-3. `perfil-leonel-flip.png`: tarjeta girada mostrando películas y discos.
-4. `bitacora.png`: tabla de la bitácora.
-5. `responsive-mobile.png`: vista responsive en un ancho menor a `400px`.
+### Portada
 
-Luego pueden insertarse en esta sección con el formato `![Descripción](img/capturas/nombre.png)`.
+![Portada principal de Yoda Labs con el hero y la sección Staff](img/capturas/portada.PNG)
+
+### Perfil de Leonel
+
+![Perfil de Leonel mostrando la tarjeta frontal](img/capturas/perfil-leonel.PNG)
+
+### Perfil girado
+
+![Perfil de Leonel girado mostrando películas y discos favoritos](img/capturas/perfil-leonel-flip.png)
+
+### Bitácora
+
+La bitácora es una página extensa, por eso se incluye una captura representativa de su encabezado, métricas y tabla de seguimiento.
+
+![Vista representativa de la bitácora del proyecto](img/capturas/bitacora.PNG)
+
+### Diseño responsive
+
+![Vista responsive del proyecto en dispositivos móviles](img/capturas/responsive-mobile.png)
 
 ---
 
